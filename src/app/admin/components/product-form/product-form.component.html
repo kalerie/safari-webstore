@@ -1,24 +1,23 @@
-<h1 *ngIf="route.snapshot.data['type']==='create'">Add new item</h1>
-<h1 *ngIf="route.snapshot.data['type']==='update'">Update item</h1>
+<h1 *ngIf="routeType === formTypeEnum.create">Add new item</h1>
+<h1 *ngIf="routeType === formTypeEnum.update">Update item</h1>
 <div class="form-container">
     <form [formGroup]="newCardForm" (ngSubmit)="submit()" autocomplete="off">
         <div class="form-group">
             <label for="title">Cart title:</label>
-            <input formControlName="title" id="title" type="text" class="form-control" required placeholder="Name of item...">
+            <input formControlName="title" id="title" class="form-control" required placeholder="Name of item...">
         </div>
         <div class="form-group">
             <label for="price">Cart price:</label>
-            <input formControlName="price" id="price" type="text" class="form-control" required placeholder="10000">
+            <input formControlName="price" id="price" class="form-control" required placeholder="10000">
         </div>
         <div class="form-group">
             <label for="imageUrl">Image URL:</label>
-            <input formControlName="imageUrl" id="imageUrl" type="text" class="form-control" required placeholder="http://..." required pattern=".*\/.*.(png|jpg|webp)">
+            <input formControlName="imageUrl" id="imageUrl" class="form-control" required placeholder="http://..." required pattern=".*\/.*.(png|jpg|webp)">
             <img [src]="newCardForm.controls['imageUrl'].value" *ngIf="newCardForm.controls['imageUrl']?.valid" />
         </div>
         <button type="submit" [disabled]="newCardForm.invalid" class="btn btn-primary">
-            {{ route.snapshot.data['type']==='create' ? 'Create' : 'Update' }}
+            {{ routeType === formTypeEnum.create ? 'Create' : 'Update' }}
         </button>
-        <!-- <button *ngIf="route.snapshot.data['type']==='update'" type="button" [disabled]="newCardForm.invalid" class="btn btn-warning" (click)="updateCard()">Update</button> -->
         <button (click)="cancel()" type="button" class="btn btn-default">Cancel</button>
     </form>
 </div>

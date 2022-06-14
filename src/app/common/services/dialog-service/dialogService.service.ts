@@ -14,8 +14,10 @@ export interface DialogConfig {
 
 export class DialogService {
 
-  constructor(private overlay: Overlay,
-    private injector: Injector) { }
+  constructor(
+    private overlay: Overlay,
+    private injector: Injector
+  ) { }
 
   open<T>(component: ComponentType<T>, config?: DialogConfig): DialogRef {
     // Globally centered position strategy

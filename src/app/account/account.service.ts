@@ -21,8 +21,10 @@ export class AccountService {
   private apiUrlFavorites = 'http://localhost:3000/favorites';
   private apiUrlUsers = 'http://localhost:3000/users';
 
-  constructor(private http: HttpClient,
-    private cardService: CardService) { }
+  constructor(
+    private http: HttpClient,
+    private cardService: CardService
+  ) { }
 
   getProfile(): Observable<User> {
     return this.http.get<User>(`${this.apiUrlUsers}/${localStorage.getItem('user')}`);

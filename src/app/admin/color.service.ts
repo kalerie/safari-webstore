@@ -2,12 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Color } from '../common/interfaces/color.interface';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-  })
-};
+import { SharedConstants } from '../common/shared-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +10,7 @@ const httpOptions = {
 export class ColorService {
   routeChange = new Subject<number>();
   updateChange = new Subject<void>();
+  httpOptions = SharedConstants.httpOptions;
 
   private apiUrl = 'http://localhost:3000/colors';
 
@@ -24,22 +20,22 @@ export class ColorService {
     return this.http.get<Color[]>(this.apiUrl);
   }
 
-  getColor(itemId: number): Observable<any> {
-    return this.http.get<Color>(`${this.apiUrl}/${itemId}`)
+  getColor(id: number): Observable<Color> {
+    return this.http.get<Color>(`${this.apiUrl}/${id}`)
   }
 
-  addItem(item: Color): Observable<Color> {
-    return this.http.post<Color>(this.apiUrl, item, httpOptions);
+  addColor(color: Color): Observable<Color> {
+    return this.http.post<Color>(this.apiUrl, color, this.httpOptions);
   }
 
-  updateItem(item: Color, id:number): Observable<Color> {
+  updateColor(id:number, color: Color): Observable<Color> {
       const url = `${this.apiUrl}/${id}`;
-      return this.http.put<Color>(url, item, httpOptions);
+      return this.http.put<Color>(url, color, this.httpOptions);
   }
 
-  deleteItem(item: Color): Observable<Color> {
-    const url = `${this.apiUrl}/${item.id}`;
-    return this.http.delete<Color>(url);
+  deleteColor(id: number): Observable<void> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(url);
   }
 
 }

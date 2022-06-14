@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormType } from 'src/app/common/form-type.enum';
 import { Size } from 'src/app/common/interfaces/size.interface';
 import { NotificationService } from 'src/app/common/services/notification.service';
 import { SizeService } from '../../size.service';
@@ -12,7 +13,9 @@ import { SizeService } from '../../size.service';
 })
 export class SizeFormComponent implements OnInit {
   newSizeForm!: FormGroup;
-  itemId?: number;
+  sizeId?: number;
+  public formTypeEnum = FormType;
+  public routeType = this.route.snapshot.data['type'];
 
   constructor(
     private router: Router,
@@ -23,17 +26,24 @@ export class SizeFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.sizeService.routeChange.next(params['id']);
-      if (params['id']) {
-        this.itemId = params['id'];
-        this.getCardAndPatchForm(params['id']);
-      }
-    })
+    this.subscribeRouteParamsChange();
+    this.initForm();
+  }
 
+  initForm() {
     this.newSizeForm = this.fb.group({
       title: '',
       value: ''
+    })
+  }
+
+  subscribeRouteParamsChange() {
+    this.route.params.subscribe((params) => {
+      this.sizeService.routeChange.next(params['id']);
+      if (params['id']) {
+        this.sizeId = params['id'];
+        this.getCardAndPatchForm(params['id']);
+      }
     })
   }
 
@@ -46,15 +56,15 @@ export class SizeFormComponent implements OnInit {
     })
   }
 
-  updateItem(item: Size) {
-    this.sizeService.updateItem(item, this.itemId as number).subscribe(() => {
+  updateSize(size: Size) {
+    this.sizeService.updateSize(this.sizeId as number, size).subscribe(() => {
       this.sizeService.updateChange.next();
     });
     this.notifyService.showSuccess('Item was updated');
   }
 
-  addItem(item: Size) {
-    this.sizeService.addItem(item).subscribe(() => {
+  addSize(size: Size) {
+    this.sizeService.addSize(size).subscribe(() => {
       this.sizeService.updateChange.next();
       this.newSizeForm.reset();
     });
@@ -62,11 +72,11 @@ export class SizeFormComponent implements OnInit {
   }
 
   submit() {
-    const item = this.newSizeForm.value;
-    if(this.route.snapshot.data['type']==='create') {
-      this.addItem(item);
+    const size = this.newSizeForm.value;
+    if(this.routeType === this.formTypeEnum.create) {
+      this.addSize(size);
     } else {
-       this.updateItem(item);
+       this.updateSize(size);
       }
   }
 

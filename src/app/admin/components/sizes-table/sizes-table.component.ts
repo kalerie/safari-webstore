@@ -11,7 +11,7 @@ import { SizeService } from '../../size.service';
 export class SizesTableComponent implements OnInit {
   sizes: Size[] = [];
   titles = ['#','Title', 'Value'];
-  HighlightRow!: number;
+  highlightRow!: number;
 
   constructor(
     private router: Router,
@@ -19,10 +19,18 @@ export class SizesTableComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.sizeService.routeChange.subscribe((id) => {
-      this.HighlightRow = id;
-    });
+    this.subscribeRouteChange();
+    this.subscribeUpdateChange();
     this.sizeService.getSizes().subscribe((sizes) => (this.sizes = sizes));
+  }
+
+  subscribeRouteChange() {
+    this.sizeService.routeChange.subscribe((id) => {
+      this.highlightRow = id;
+    });
+  }
+
+  subscribeUpdateChange() {
     this.sizeService.updateChange.subscribe({
       next: () => { 
         this.sizeService.getSizes().subscribe((sizes) => (this.sizes = sizes))
@@ -34,17 +42,19 @@ export class SizesTableComponent implements OnInit {
     this.router.navigate(['/admin/sizes/new']);
   }
 
-  selectRow(index: any) {
-    this.HighlightRow = index;
+  selectRow(index: number) {
+    this.highlightRow = index;
     this.router.navigate(['/admin/sizes/', index]);
   }
 
-  deleteItem (item: Size, event: Event) {
+  deleteItem (id: number, event: Event) {
     this.sizeService
-      .deleteItem(item)
+      .deleteSize(id)
       .subscribe(() => {
-        this.sizes = this.sizes.filter(t => t.id !== item.id)
-        this.router.navigate(['/admin/sizes']);
+        this.sizes = this.sizes.filter(t => t.id !== id)
+        if(this.router.url == `/admin/sizes/${id}`){
+          this.router.navigate(['/admin/sizes']);
+        }
       })
     event.stopPropagation();
   }

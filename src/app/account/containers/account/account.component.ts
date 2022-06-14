@@ -9,8 +9,10 @@ import { UserService } from 'src/app/auth/user.service';
 })
 export class AccountComponent implements OnInit {
 
-  constructor(private userService: UserService,
-    private router: Router) { }
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }

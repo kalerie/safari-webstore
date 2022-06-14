@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormType } from 'src/app/common/form-type.enum';
 import { Color } from 'src/app/common/interfaces/color.interface';
 import { NotificationService } from 'src/app/common/services/notification.service';
 import { ColorService } from '../../color.service';
@@ -13,16 +14,30 @@ import { ColorService } from '../../color.service';
 export class ColorFormComponent implements OnInit {
   newColorForm!: FormGroup;
   itemId?: number;
+  public formTypeEnum = FormType;
+  public routeType = this.route.snapshot.data['type'];
 
   constructor(
     private router: Router,
-    public route: ActivatedRoute,
+    private route: ActivatedRoute,
     private fb: FormBuilder,
     private colorService: ColorService,
     private notifyService: NotificationService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
+    this.subscribeRouteParamsChange();
+    this.initForm();
+  }
+
+  initForm() {
+    this.newColorForm = this.fb.group({
+      title: '',
+      value: ''
+    })
+  }
+
+  subscribeRouteParamsChange() {
     this.route.params.subscribe((params) => {
       this.colorService.routeChange.next(params['id']);
       if (params['id']) {
@@ -30,12 +45,6 @@ export class ColorFormComponent implements OnInit {
         this.getCardAndPatchForm(params['id']);
       }
     })
-
-    this.newColorForm = this.fb.group({
-      title: '',
-      value: ''
-    })
-    
   }
 
   getCardAndPatchForm(id: number) {
@@ -47,15 +56,15 @@ export class ColorFormComponent implements OnInit {
     })
   }
 
-  updateItem(item: Color) {
-    this.colorService.updateItem(item, this.itemId as number).subscribe(() => {
+  updateColor(color: Color) {
+    this.colorService.updateColor(this.itemId as number, color).subscribe(() => {
       this.colorService.updateChange.next();
     });
     this.notifyService.showSuccess('Item was updated');
   }
 
-  addItem(item: Color) {
-    this.colorService.addItem(item).subscribe(() => {
+  addColor(color: Color) {
+    this.colorService.addColor(color).subscribe(() => {
       this.colorService.updateChange.next();
       this.newColorForm.reset();
     });
@@ -64,10 +73,10 @@ export class ColorFormComponent implements OnInit {
 
   submit() {
     const item = this.newColorForm.value;
-    if(this.route.snapshot.data['type']==='create') {
-      this.addItem(item);
+    if(this.routeType === this.formTypeEnum.create) {
+      this.addColor(item);
     } else {
-       this.updateItem(item);
+       this.updateColor(item);
       }
   }
 

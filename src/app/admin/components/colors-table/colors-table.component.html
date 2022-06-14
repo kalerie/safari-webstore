@@ -8,16 +8,15 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="row" *ngFor="let item of colors; let row; let i = index" (click)="selectRow(item.id)" [class.active]="item.id == HighlightRow">
-            <td class="row__id">{{ i+1 }}</td>
+        <tr class="row" *ngFor="let item of colors; let row" (click)="selectRow(item.id!)" [class.active]="item.id == highlightRow">
+            <td class="row__id">{{ item.id }}</td>
             <td>{{item.title}}</td>
             <td class="row__value">
-                <span style="background-color: {{ item.value }}" class="row__value--mark"></span>
+                <span [style.background]="item.value" class="row__value--mark"></span>
                 <p class="row__value--text">{{item.value}}</p>
             </td>
             <td>
-                <button (click)="deleteItem(row, $event)" class="btn btn-delete">Delete</button>
-                <!-- <button (click)="deleteCard(row, $event)" class="td-btn">Delete</button> -->
+                <button (click)="deleteColor(item.id!, $event)" class="btn btn-delete">Delete</button>
             </td>
         </tr>
     </tbody>

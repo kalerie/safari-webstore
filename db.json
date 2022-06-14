@@ -87,11 +87,6 @@
       "title": "White",
       "value": "#ffffff",
       "id": 4
-    },
-    {
-      "title": "sdfds",
-      "value": "#2d0b0b",
-      "id": 5
     }
   ],
   "sizes": [
@@ -109,6 +104,11 @@
       "title": "Large",
       "value": "L",
       "id": 3
+    },
+    {
+      "title": "fsdf",
+      "value": "SM",
+      "id": 4
     }
   ],
   "users": [

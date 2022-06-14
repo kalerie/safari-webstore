@@ -11,16 +11,26 @@ import { ColorService } from '../../color.service';
 export class ColorsTableComponent implements OnInit {
   colors: Color[] = [];
   titles = ['#','Title', 'Value'];
-  HighlightRow!: number;
+  highlightRow!: number;
 
-  constructor(private router: Router,
-    private colorService: ColorService) { }
+  constructor(
+    private router: Router,
+    private colorService: ColorService
+  ) { }
 
   ngOnInit(): void {
-    this.colorService.routeChange.subscribe((id) => {
-      this.HighlightRow = id;
-    });
+    this.subscribeRouteChange();
+    this.subscribeUpdateChange();
     this.colorService.getColors().subscribe((colors) => (this.colors = colors));
+  }
+
+  subscribeRouteChange() {
+    this.colorService.routeChange.subscribe((id) => {
+      this.highlightRow = id;
+    });
+  }
+
+  subscribeUpdateChange() {
     this.colorService.updateChange.subscribe({
       next: () => { 
         this.colorService.getColors().subscribe((colors) => (this.colors = colors))
@@ -32,17 +42,19 @@ export class ColorsTableComponent implements OnInit {
     this.router.navigate(['/admin/colors/new']);
   }
 
-  selectRow(index: any) {
-    this.HighlightRow = index;
+  selectRow(index: number) {
+    this.highlightRow = index;
     this.router.navigate(['/admin/colors/', index]);
   }
 
-  deleteItem (item: Color, event: Event) {
+  deleteColor(id: number, event: Event) {
     this.colorService
-      .deleteItem(item)
+      .deleteColor(id as number)
       .subscribe(() => {
-        this.colors = this.colors.filter(t => t.id !== item.id)
-        this.router.navigate(['/admin/colors']);
+        this.colors = this.colors.filter(t => t.id !== id)
+        if(this.router.url == `/admin/colors/${id}`){
+          this.router.navigate(['/admin/colors']);
+        }
       })
     event.stopPropagation();
   }

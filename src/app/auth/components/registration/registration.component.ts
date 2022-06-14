@@ -12,9 +12,11 @@ import { UserService } from '../../user.service';
 export class RegistrationComponent implements OnInit {
   registrationForm!: FormGroup;
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private userService: UserService,
-    private router: Router) {
+    private router: Router
+  ) {
       
     }
 

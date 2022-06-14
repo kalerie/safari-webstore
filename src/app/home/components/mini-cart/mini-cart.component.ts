@@ -9,9 +9,10 @@ import { DIALOG_DATA } from '../../../common/services/dialog-service/dialogToken
 })
 export class MiniCartComponent implements OnInit {
 
-  constructor(private dialogRef: DialogRef,
+  constructor(
+    private dialogRef: DialogRef,
     @Inject(DIALOG_DATA) public data: string
-    ) { }
+  ) { }
 
   ngOnInit(): void {
   }

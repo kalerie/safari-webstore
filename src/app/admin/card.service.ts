@@ -2,12 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Product } from '../common/interfaces/product.interface';
-
-const httpOptions = {
-    headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-    })
-};
+import { SharedConstants } from '../common/shared-constants';
 
 @Injectable({
     providedIn: 'root'
@@ -16,6 +11,8 @@ const httpOptions = {
 export class CardService {
     routeChange = new Subject<number>();
     updateChange = new Subject<void>();
+    httpOptions = SharedConstants.httpOptions;
+
     private apiUrl = 'http://localhost:3000/products';
 
     constructor(private http: HttpClient){  }
@@ -29,12 +26,12 @@ export class CardService {
     }
 
     addCard(card: Product): Observable<Product> {
-        return this.http.post<Product>(this.apiUrl, card, httpOptions);
+        return this.http.post<Product>(this.apiUrl, card, this.httpOptions);
     }
 
     updateCard(card: Product, id:number): Observable<Product> {
         const url = `${this.apiUrl}/${id}`;
-        return this.http.put<Product>(url, card, httpOptions);
+        return this.http.put<Product>(url, card, this.httpOptions);
     }
 
     deleteCard(card:Product): Observable<Product> {
