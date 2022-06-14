@@ -5,7 +5,6 @@ import { Product } from '../../../common/interfaces/product.interface';
 import { CardService } from '../../card.service';
 import { NotificationService } from 'src/app/common/services/notification.service';
 
-
 @Component({
   selector: 'admin-product-form',
   templateUrl: './product-form.component.html',
@@ -21,7 +20,7 @@ export class ProductFormComponent implements OnInit {
     private router: Router,
     private notifyService: NotificationService) {
       
-    }
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
