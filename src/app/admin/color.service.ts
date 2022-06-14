@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Color } from '../common/interfaces/color.interface';
-import { SharedConstants } from '../common/shared-constants';
+import { HTTP_HEADERS } from '../common/constants/api-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import { SharedConstants } from '../common/shared-constants';
 export class ColorService {
   routeChange = new Subject<number>();
   updateChange = new Subject<void>();
-  httpOptions = SharedConstants.httpOptions;
+  httpOptions = HTTP_HEADERS;
 
   private apiUrl = 'http://localhost:3000/colors';
 

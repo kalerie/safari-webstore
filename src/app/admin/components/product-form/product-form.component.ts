@@ -53,8 +53,9 @@ export class ProductFormComponent implements OnInit {
   updateCard(card: Product) {
     this.cardService.updateCard(card, this.cardId as number).subscribe(() => {
       this.cardService.updateChange.next();
+      this.notifyService.showSuccess('Card was updated');
     });
-    this.notifyService.showSuccess('Card was updated');
+    
   }
  
   getCardAndPatchForm(id: number) {
@@ -71,13 +72,14 @@ export class ProductFormComponent implements OnInit {
     this.cardService.addCard(card).subscribe(() => {
       this.cardService.updateChange.next();
       this.newCardForm.reset();
+      this.notifyService.showSuccess('Card was added');
     });
-    this.notifyService.showSuccess('Card was added');
+    
   }
 
   submit(): void {
     const card = this.newCardForm.value;
-    if(this.routeType === this.formTypeEnum.create) {
+    if(this.routeType === this.formTypeEnum.CREATE) {
       this.addCard(card);
     } else {
        this.updateCard(card);

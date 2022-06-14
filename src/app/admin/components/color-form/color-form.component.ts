@@ -59,21 +59,23 @@ export class ColorFormComponent implements OnInit {
   updateColor(color: Color) {
     this.colorService.updateColor(this.itemId as number, color).subscribe(() => {
       this.colorService.updateChange.next();
+      this.notifyService.showSuccess('Item was updated');
     });
-    this.notifyService.showSuccess('Item was updated');
+    
   }
 
   addColor(color: Color) {
     this.colorService.addColor(color).subscribe(() => {
       this.colorService.updateChange.next();
       this.newColorForm.reset();
+      this.notifyService.showSuccess('Item was added');
     });
-    this.notifyService.showSuccess('Item was added');
+    
   }
 
   submit() {
     const item = this.newColorForm.value;
-    if(this.routeType === this.formTypeEnum.create) {
+    if(this.routeType === this.formTypeEnum.CREATE) {
       this.addColor(item);
     } else {
        this.updateColor(item);

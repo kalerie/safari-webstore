@@ -22,7 +22,7 @@ export class ProductsTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeRouteChange();
-    this.subscribeUpdateChange();
+    this.subscribeDataShouldUpdate();
     this.cardService.getCards().subscribe((cards) => (this.cards = cards));
   }
 
@@ -32,7 +32,7 @@ export class ProductsTableComponent implements OnInit {
     });
   }
 
-  subscribeUpdateChange() {
+  subscribeDataShouldUpdate() {
     this.cardService.updateChange.subscribe({
       next: () => { 
         this.cardService.getCards().subscribe((cards) => (this.cards = cards))

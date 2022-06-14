@@ -20,7 +20,7 @@ export class ColorsTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeRouteChange();
-    this.subscribeUpdateChange();
+    this.subscribeDataShouldUpdate();
     this.colorService.getColors().subscribe((colors) => (this.colors = colors));
   }
 
@@ -30,7 +30,7 @@ export class ColorsTableComponent implements OnInit {
     });
   }
 
-  subscribeUpdateChange() {
+  subscribeDataShouldUpdate() {
     this.colorService.updateChange.subscribe({
       next: () => { 
         this.colorService.getColors().subscribe((colors) => (this.colors = colors))
@@ -49,7 +49,7 @@ export class ColorsTableComponent implements OnInit {
 
   deleteColor(id: number, event: Event) {
     this.colorService
-      .deleteColor(id as number)
+      .deleteColor(id)
       .subscribe(() => {
         this.colors = this.colors.filter(t => t.id !== id)
         if(this.router.url == `/admin/colors/${id}`){

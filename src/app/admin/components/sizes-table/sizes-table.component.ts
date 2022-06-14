@@ -20,7 +20,7 @@ export class SizesTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeRouteChange();
-    this.subscribeUpdateChange();
+    this.subscribeDataShouldUpdate();
     this.sizeService.getSizes().subscribe((sizes) => (this.sizes = sizes));
   }
 
@@ -30,7 +30,7 @@ export class SizesTableComponent implements OnInit {
     });
   }
 
-  subscribeUpdateChange() {
+  subscribeDataShouldUpdate() {
     this.sizeService.updateChange.subscribe({
       next: () => { 
         this.sizeService.getSizes().subscribe((sizes) => (this.sizes = sizes))
@@ -47,7 +47,7 @@ export class SizesTableComponent implements OnInit {
     this.router.navigate(['/admin/sizes/', index]);
   }
 
-  deleteItem (id: number, event: Event) {
+  deleteSize (id: number, event: Event) {
     this.sizeService
       .deleteSize(id)
       .subscribe(() => {

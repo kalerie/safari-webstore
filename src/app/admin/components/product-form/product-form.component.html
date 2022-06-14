@@ -1,5 +1,5 @@
-<h1 *ngIf="routeType === formTypeEnum.create">Add new item</h1>
-<h1 *ngIf="routeType === formTypeEnum.update">Update item</h1>
+<h1 *ngIf="routeType === formTypeEnum.CREATE">Add new item</h1>
+<h1 *ngIf="routeType === formTypeEnum.UPDATE">Update item</h1>
 <div class="form-container">
     <form [formGroup]="newCardForm" (ngSubmit)="submit()" autocomplete="off">
         <div class="form-group">
@@ -16,7 +16,7 @@
             <img [src]="newCardForm.controls['imageUrl'].value" *ngIf="newCardForm.controls['imageUrl']?.valid" />
         </div>
         <button type="submit" [disabled]="newCardForm.invalid" class="btn btn-primary">
-            {{ routeType === formTypeEnum.create ? 'Create' : 'Update' }}
+            {{ routeType === formTypeEnum.CREATE ? 'Create' : 'Update' }}
         </button>
         <button (click)="cancel()" type="button" class="btn btn-default">Cancel</button>
     </form>

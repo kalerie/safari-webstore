@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Product } from '../common/interfaces/product.interface';
-import { SharedConstants } from '../common/shared-constants';
+import { HTTP_HEADERS } from '../common/constants/api-constants';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +11,7 @@ import { SharedConstants } from '../common/shared-constants';
 export class CardService {
     routeChange = new Subject<number>();
     updateChange = new Subject<void>();
-    httpOptions = SharedConstants.httpOptions;
+    httpOptions = HTTP_HEADERS;
 
     private apiUrl = 'http://localhost:3000/products';
 

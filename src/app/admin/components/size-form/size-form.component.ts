@@ -59,21 +59,23 @@ export class SizeFormComponent implements OnInit {
   updateSize(size: Size) {
     this.sizeService.updateSize(this.sizeId as number, size).subscribe(() => {
       this.sizeService.updateChange.next();
+      this.notifyService.showSuccess('Item was updated');
     });
-    this.notifyService.showSuccess('Item was updated');
+    
   }
 
   addSize(size: Size) {
     this.sizeService.addSize(size).subscribe(() => {
       this.sizeService.updateChange.next();
       this.newSizeForm.reset();
+      this.notifyService.showSuccess('Item was added');
     });
-    this.notifyService.showSuccess('Item was added');
+    
   }
 
   submit() {
     const size = this.newSizeForm.value;
-    if(this.routeType === this.formTypeEnum.create) {
+    if(this.routeType === this.formTypeEnum.CREATE) {
       this.addSize(size);
     } else {
        this.updateSize(size);
