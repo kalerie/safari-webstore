@@ -1,0 +1,130 @@
+.header {
+    max-width: 1440px;
+    height: 70px;
+    margin: 0 auto;
+    
+    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.list-nav {
+    display: flex;
+    gap: 60px;
+    // align-items: center;
+
+
+}
+
+a {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000;
+    cursor: pointer;
+}
+
+.active {
+    font-weight: 800;
+    color: #ED165F;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ED165F;
+    
+}
+
+.list-nav__item:has(.active) {
+    transform: translateY(12px);
+}
+
+.logo {
+    cursor: pointer;
+    width: 70px;
+    height: 40.35px;
+}
+
+.search {
+    flex: 0 0 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 191px;
+
+    &__input {
+        font-family: Muilsh;
+        font-weight: 400;
+        font-size: 12px;
+        background-color: #F5F5F5;
+        border: none;
+        width: 90%;
+        transition: all .2s;
+        border-bottom: .5px solid rgba(0, 0, 0, .5);
+
+        &:focus {
+            outline: none;
+            width: 100%;
+        }
+    }
+
+    &__button {
+        border: none;
+        background-color: #F5F5F5;
+        
+
+        &-icon {
+            cursor: pointer;
+            // fill: #F5F5F5;
+        }
+    }
+}
+
+.user-nav {
+    display: flex;
+
+    &-left {
+        
+      
+    }
+
+    &-right {
+        gap: 39px;
+    }
+
+    &__icon-box {
+        display: flex;
+        gap: 30px;
+
+        &-item {
+            cursor: pointer;
+            transition: all .5s;
+
+            &:hover {
+                color: #ED165F;
+                transform: scale(1.2);
+            }
+
+            &:active,
+            &:focus {
+                transform: translateY(-2px) scale(1.3);
+                box-shadow: 0 1rem 2 rem rgba(black, .2);
+            }
+        }
+    }
+}
+
+.icon {
+    position: relative;
+
+    &-span {
+        position: absolute;
+        top: -12px;
+        left: 11px;
+        background-color: #ED165F;
+        border: 1px solid #000;
+        font-weight: 400;
+        font-size: 10px;
+        color: #fff;
+        padding: 4px 4px;
+        border-radius: 50%;
+    }   
+
+}

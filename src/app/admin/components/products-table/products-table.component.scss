@@ -1,0 +1,57 @@
+.card-box {
+    // margin-top: 20px;
+
+}
+
+table {
+    border: none;
+}
+
+.tr-body {
+    cursor: pointer;
+
+    &:hover {
+        background-color: #e5e4e2;
+        border: none;
+    }
+}
+
+td {
+    border-top: 1px solid #dee2e6;
+    vertical-align: middle;
+    padding: 5px;
+}
+
+.td-imageUrl {
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 400px;
+}
+
+.td-btn {
+    cursor: pointer;
+    background-color: gainsboro;
+    border-color: gainsboro;
+    border-radius: 3px;
+    padding: 2px 2px;
+    margin: 3px 3px;
+}
+
+.th-btn {
+    cursor: pointer;
+    background-color: #228b22;
+    border-color: #006400;
+    color: white;
+    border-radius: 3px;
+    padding: 3px 7px;
+    margin: 2px 2px;
+}
+
+.td-id {
+    font-weight: bold;
+}
+
+.active {
+    background-color: gray !important;
+    border: none;
+}

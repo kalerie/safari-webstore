@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="container__nav">
+        <div class="container__nav--header">
+            <!-- .container__nav--header-text -->
+            <p class="container__nav--header-text">
+                ACCOUNT DASHBOARD
+            </p>
+            <ul class="list">
+                <li routerLink="/account/profile" routerLinkActive="active" class="list-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="list-item-icon" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
+                    </svg>
+                    <p>Account Information</p>
+                </li>
+                <li routerLink="/account/address" routerLinkActive="active" class="list-item">
+                    
+                    <img src="../../../../assets/images/address-book-icon.svg" alt="address-book-icon" class="list-item-icon">
+                    <p>Address Book</p>
+                </li>
+                <li routerLink="/account/orders" routerLinkActive="active" class="list-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="list-item-icon" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z" clip-rule="evenodd" />
+                        <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z" />
+                    </svg>
+                    <p>My Orders</p>
+                </li>
+                <li routerLink="/account/favorites" routerLinkActive="active" class="list-item">
+                    <i class="list-item-icon material-icons">favorite</i>
+                    <p>My Favorites</p>
+                </li>
+            </ul>
+        </div>
+        
+        
+        <div (click)="signout()" class="container__nav--signout">
+            <svg xmlns="http://www.w3.org/2000/svg" class="container__nav--signout-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            <button class="container__nav--signout-button">
+                Sign out
+            </button>
+        </div>
+        
+    </div>
+    <div class="container__outlet">
+        <router-outlet></router-outlet>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<h2 class="section-title">User information</h2>
+
+<div *ngIf="isLoading; else loaded" class="loading">
+    <h3>Loading...</h3>
+</div>
+
+<ng-template #loaded>
+    <div class="container">
+        <form [formGroup]="userProfileForm" (ngSubmit)="submit()" autocomplete="off">
+            <div class="box__form-group">
+                <div class="form-group">
+                    <label for="firstName">First name</label>
+                    <input formControlName="firstName" id="firstName" type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last name</label>
+                    <input formControlName="lastName" id="lastName" type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input formControlName="email" id="email" type="text" class="form-control" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select formControlName="gender" class="form-control">
+                        <option *ngFor="let gender of genders" [value]="gender.value">
+                            {{ gender.label }}
+                        </option>
+                    </select>
+                </div>
+                
+
+                <div class="form-group">
+                    <label for="dateOfBirth">Date of birth</label>
+                    <input formControlName="dateOfBirth" id="dateOfBirth" type="date" class="form-control">
+                </div>
+
+                
+                <a href="" class="form-link">Change password</a>
+
+                <div class="form-check">
+                    <label for="newsletters" class="main">
+                        Newsletter subscription
+                        <input type="checkbox" formControlName="newsletters" id="newsletters" class="checked" />
+                        <span class="pinkmark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http//www.w3.org/2000/svg">
+                            <path d="M20.8388 6.69459L8.81799 18.7154L3.16113 13.0586L4.57113 11.6486L8.81799 15.8854L19.4288 5.28459L20.8388 6.69459Z" fill="#fff"></path>
+                            </svg>
+                            </span>
+                    </label>
+                    <!-- <input type="checkbox" formControlName="rememberMyDetails" id="rememberMyDetails" class="form-check-input" />
+                    <label for="rememberMyDetails">Remember my details</label> -->
+                </div>
+
+
+            </div>
+            
+            <button type="submit" [disabled]="userProfileForm.invalid" class="btn btn-primary">
+                Save changes
+            </button>
+        </form>
+    </div>
+
+</ng-template>

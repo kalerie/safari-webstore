@@ -1,0 +1,136 @@
+///////////////////////////////// HEADER
+header {
+    background-color: #ED165F;
+    
+    
+}
+
+.header {
+    width: 1440px;
+    height: 1096px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &__img-box {
+        background-image: url(../../../../assets/images/Logo_back.svg);
+        // background-size: 100%;
+        // width: 1095.48px;
+        // height: 631.45px;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        display: flex;
+        justify-content: center;
+
+        &--photo {
+            width: 666px;
+            height: 870px;
+        }
+    }
+
+    &__switcher {
+        align-self: center;
+        display: flex;
+        gap: 26px;
+        margin-bottom: 64px;
+
+        &-item {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &__link {
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+
+        &-text {
+            font-size: 30px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        &-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}
+
+.icon {
+
+    &-dot {
+        width: 20px;
+        height: 20px;
+        stroke: white;
+        stroke-width: 3px;
+        margin-bottom: -14px;
+    }
+
+    &-arrow-bottom {
+        width: 30px;
+        height: 30px;
+        stroke-width: 2px;
+        color: #fff;
+        margin-bottom: 37px;
+    }
+}
+
+
+//////////////////////////////// BODY
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 64px;
+    margin: 0 auto;
+
+    &-title {
+        margin: 0 auto;
+        display: flex;
+        align-content: center;
+        justify-content: space-between;
+        margin-bottom: 32px;
+        width: 100%;
+
+        &-line{
+            flex: 0 0 30%;
+            height: 30px;
+            border-bottom: 1px solid black;
+        }
+
+        &-text {
+            font-size: 40px;
+            font-weight: 700;
+            color: #000;
+            text-align: center;
+            
+        }
+        
+    }
+
+    &-paragraph {
+        font-size: 24px;
+        font-weight: 400;
+        color: #000;
+        text-align: center;
+        width: 1099px;
+        height: 105px;
+    }
+}
+
+.products {
+    padding: 4rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    // grid-column-gap: 1.5rem;
+    grid-row-gap: 2rem;
+    justify-content: space-around;
+    // width: 100%;
+    gap: 48.4px;
+}

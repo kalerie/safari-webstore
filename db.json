@@ -1,0 +1,132 @@
+{
+  "products": [
+    {
+      "title": "Dress blue",
+      "price": "10000",
+      "imageUrl": "https://img01.ztat.net/article/spp-media-p1/113790dcc55b44d29ffeb67b4db44f95/8c4006f6e1374d4f93bbbc40a2227cfe.jpg",
+      "id": 1
+    },
+    {
+      "title": "Title of i123243",
+      "price": "10000",
+      "imageUrl": "https://pix.bonprix.pl/imgc/0/0/2/0/1/4/8/3/6/3/_640/20148363/sukienka-szmizjerka-z-efektem-przewiazania.jpg",
+      "id": 2
+    },
+    {
+      "title": "Title of img",
+      "price": "10000",
+      "imageUrl": "https://b2c-media.marinarinaldi.com/sys-master/m0/MR/2022/1/4121072004/079/s3master/4121072004079-a-tigrotto_normal.webp",
+      "id": 3
+    },
+    {
+      "title": "Title of img",
+      "price": "10000",
+      "imageUrl": "https://img.ltwebstatic.com/images3_pi/2021/05/27/162210328038190a19ccfab7bb68654cd263fadef2_thumbnail_900x.webp",
+      "id": 4
+    },
+    {
+      "title": "Title of img",
+      "price": "10000",
+      "imageUrl": "https://sandbella.com/userdata/public/gfx/73222.jpg",
+      "id": 5
+    },
+    {
+      "title": "Title of img",
+      "price": "10000",
+      "imageUrl": "https://img01.ztat.net/outfit/5f3076462a9c44fbbe24af8229ea9aa5/771e5ffa5cd5422cadae008a9179cbd8.jpg",
+      "id": 6
+    },
+    {
+      "title": "sdfds",
+      "price": 5000,
+      "imageUrl": "https://images.ctfassets.net/pt4py9bttes0/1wiyhSRxucTCH8Ai5s6Ook/1bfd9ed2358738a4ff7722a1e48b2f39/product-10.jpg",
+      "id": 7
+    },
+    {
+      "title": "Title of img",
+      "price": "10000",
+      "imageUrl": "https://pix.bonprix.pl/imgc/0/0/2/0/1/4/8/3/6/3/_640/20148363/sukienka-szmizjerka-z-efektem-przewiazania.jpg",
+      "id": 8
+    },
+    {
+      "title": "fdsd",
+      "price": 5000,
+      "imageUrl": "https://images.ctfassets.net/pt4py9bttes0/1wiyhSRxucTCH8Ai5s6Ook/1bfd9ed2358738a4ff7722a1e48b2f39/product-10.jpg",
+      "id": 9
+    },
+    {
+      "title": "efefe",
+      "price": 3020,
+      "imageUrl": "https://images.ctfassets.net/pt4py9bttes0/1wiyhSRxucTCH8Ai5s6Ook/1bfd9ed2358738a4ff7722a1e48b2f39/product-10.jpg",
+      "id": 10
+    },
+    {
+      "title": "gghfg",
+      "price": "46355",
+      "imageUrl": "https://images.ctfassets.net/pt4py9bttes0/1wiyhSRxucTCH8Ai5s6Ook/1bfd9ed2358738a4ff7722a1e48b2f39/product-10.jpg",
+      "id": 11
+    }
+  ],
+  "users": [
+    {
+      "firstName": "first",
+      "lastName": "last",
+      "email": "email@mail",
+      "gender": "NA",
+      "dateOfBirth": "2022-06-14",
+      "newsletters": true,
+      "id": 1
+    },
+    {
+      "firstName": "Joy",
+      "lastName": "Dou",
+      "email": "mail@dld",
+      "password": "pass1",
+      "newsletters": true,
+      "id": 2
+    },
+    {
+      "firstName": "Joy",
+      "lastName": "Dou",
+      "email": "mail@dld",
+      "password": "pass1",
+      "newsletters": false,
+      "id": 3
+    },
+    {
+      "firstName": "lflf",
+      "lastName": "lflf",
+      "email": "kjg@kfj",
+      "password": "1233",
+      "newsletters": null,
+      "id": 4
+    }
+  ],
+  "favorites": [
+    {
+      "userId": 2,
+      "productId": 3,
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "productId": 1,
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "productId": 2,
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "productId": 3,
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "productId": 6,
+      "id": 7
+    }
+  ]
+}

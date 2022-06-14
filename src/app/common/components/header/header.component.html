@@ -1,0 +1,49 @@
+<div class="header">
+    <nav class="user-nav user-nav-left">
+        <ul class="list-nav">
+            <li class="list-nav__item">
+                <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+            </li>
+            <li class="list-nav__item">
+                <a routerLink="/clothes" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Clothes</a></li>
+            <li class="list-nav__item">
+                <a routerLink="/shoes" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Shoes</a></li>
+            <li class="list-nav__item">
+                <a routerLink="/accessories" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Accessories</a></li>
+        </ul>
+    </nav>
+    
+    <img routerLink="/" src="../../../../assets/images/Logo_small.png" alt="safari logo" class="logo">
+
+    <nav class="user-nav user-nav-right">
+        <form autocomplete="off" action="#" class="search">
+            <input type="text" class="search__input" id="searchInput" placeholder="Search...">
+            
+            <button class="search__button">
+                <i class="material-icons search__button-icon">search</i>
+            </button>
+            
+        </form>
+        
+        <div class="user-nav__icon-box">
+            <div class="user-nav__icon-box-item">
+                <i (click)="navigationProfileClick()" routerLink="/auth" routerLinkActive="active" class="material-icons">person</i>
+            </div>
+
+            <div  class="user-nav__icon-box-item">
+                <i routerLink="/checkout" routerLinkActive="active" class="material-icons icon">
+                    shopping_cart
+                    <span class="icon-span">{{ cartItemsAmount }}</span>
+                </i>
+                
+            </div>
+
+            <div (click)="dialogOpen()" class="user-nav__icon-box-item">
+                <i class="material-icons">favorite</i>
+            </div>
+        </div>
+    </nav>
+
+
+</div>
+

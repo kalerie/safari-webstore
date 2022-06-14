@@ -1,0 +1,127 @@
+.form-container {
+    margin-top: 32px;
+
+    &__links {
+        width: 410px;
+        display: flex;
+        justify-content: space-between;
+
+        &:last-child {
+            text-align: right;
+        }
+
+        &-link {
+            text-decoration: revert;
+            color: black;
+            font-weight: 400;
+            font-size: 18px;
+        }
+    }   
+}
+
+.form-group {
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+    gap: 16px;
+}
+
+.form-control {
+    width: 410px;
+    height: 60px;
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.form-check {
+    margin-top: 16px;
+}
+
+.main {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    width: 160px;
+}
+  
+/* Hide the default checkbox */
+input[type=checkbox] {
+    visibility: hidden;
+}
+  
+/* Creating a custom checkbox
+based on demand */
+.pinkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #ccc;
+    border-radius: 2px;
+
+    & > * {
+        display: none;
+    }
+}
+  
+/* Specify the background color to be
+shown when hovering over checkbox */
+.main:hover input ~ .pinkmark {
+    background-color: #DB0A5B;
+}
+  
+  
+/* Specify the background color to be
+shown when checkbox is checked */
+.main input:checked ~ .pinkmark {
+    background-color: #ED165F;
+
+    & > * {
+        display: inline;
+        color: white;
+    }
+}
+
+.btn {
+    cursor: pointer;
+
+    &:disabled {
+        background-color: #ccc;
+    }
+
+    &-primary {
+        
+        margin-bottom: 29px;
+        width: 410px;
+        height: 47px;
+        background-color: #ED165F;
+        font-size: 18px;
+        font-weight: 800;
+        color: white;
+        border-radius: 6px;
+        border: 1px solid #ED165F;
+    }
+}
+
+.signin-box {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    
+    &__failed {
+        color: #ED165F;
+        font-style: italic;
+        font-weight: 600;
+        text-transform: lowercase;
+    }
+}

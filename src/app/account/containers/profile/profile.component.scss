@@ -1,0 +1,124 @@
+.loading {
+    color: #ED165F;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 400;
+    text-transform: capitalize;
+    padding-bottom: 32px;
+}
+
+.container {
+    
+}
+
+.box__form-group {
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+    width: 967px;
+    padding: 58px 64px;
+    padding-bottom: 46px;
+    margin-bottom: 32px
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 32px
+
+}
+
+.form-control {
+    margin-top: 16px;
+    border-radius: 6px;
+    width: 350px;
+    height: 60px;
+    border: 1px solid black;
+    padding: 0 10px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.form-link {
+    color: #ED165F;
+    font-weight: 600;
+    font-size: 16px;
+    
+}
+
+.form-check {
+    margin-top: 32px;
+}
+
+.btn {
+    cursor: pointer;
+    border-radius: 6px;
+    background-color: #ED165F;
+    border: 1px solid #ED165F;
+    width: 261px;
+    height: 47px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 2px;
+
+    &-primary {
+
+    }
+}
+
+
+
+/////////// Checkbox
+.main {
+display: block;
+position: relative;
+padding-left: 30px;
+margin-bottom: 15px;
+cursor: pointer;
+font-size: 16px;
+font-weight: 600;
+width: 210px;
+}
+
+/* Hide the default checkbox */
+input[type=checkbox] {
+visibility: hidden;
+}
+
+/* Creating a custom checkbox
+based on demand */
+.pinkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+background-color: #ccc;
+border-radius: 2px;
+
+& > * {
+    display: none;
+}
+}
+
+/* Specify the background color to be
+shown when hovering over checkbox */
+.main:hover input ~ .pinkmark {
+background-color: #DB0A5B;
+}
+
+
+/* Specify the background color to be
+shown when checkbox is checked */
+.main input:checked ~ .pinkmark {
+background-color: #ED165F;
+
+& > * {
+    display: inline;
+    color: white;
+}
+}

@@ -1,0 +1,111 @@
+.loading {
+    color: #ED165F;
+}
+
+.grid-box {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 400;
+    text-transform: capitalize;
+    padding-bottom: 32px;
+}
+
+.container {
+    width: 410px;
+    height: 231px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px;
+
+    &-top {
+        display: flex;
+
+        &__left {
+            flex-basis: 40%;
+            display: flex;
+
+            &--image {
+                align-self: center;
+                // padding: 30px;
+
+                img {
+                    width: 68px;
+                    height: 68px;
+                    object-fit: contain;
+                    // object-position: center;
+                }
+            }
+        }
+
+        &__right {
+            // margin-top: 30px;
+
+            &--title {
+                font-size: 20px;
+                font-weight: 600;
+                padding-bottom: 8px;
+            }
+
+            &--size {
+                font-size: 16px;
+                font-weight: 600;
+                color: #686868;
+                padding-bottom: 8px;
+            }
+
+            &--price {
+                font-size: 14px;
+                font-weight: 400;
+                color: #ED165F;
+            }
+        }
+    }
+
+    &-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &__buynow {
+            width: 171px;
+            height: 47px;
+            border-radius: 6px;
+            background-color: #ED165F;
+            border: 1px solid #ED165F;
+            color: white;
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        &__remove {
+            cursor: pointer;
+            width: 100px;
+            height: 30px;
+            color: #ED165F;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            position: relative;
+            text-align: end;
+            background-color: white;
+            border: none;
+
+            &-icon {
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                left: 0;
+            }
+        }
+    }
+}

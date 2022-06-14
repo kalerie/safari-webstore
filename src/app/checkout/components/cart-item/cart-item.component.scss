@@ -1,0 +1,138 @@
+.item-box {
+    height: 169px;
+    border-radius: 2px;
+    border: 1.5px solid #E1E1E1;
+    display: flex;
+    align-content: center;
+    margin-bottom: 32px;
+
+    & > * {
+        &:not(:last-child) {
+            border-right: 1.5px solid #E1E1E1;
+        }
+
+        &:not(:first-child) {
+            text-align: center;
+            padding-top: 55px;
+        }
+    }
+
+    &__description {
+        flex: 0 0 50%;
+        display: flex;
+
+        &--image {
+            padding: 30px;
+            align-self: center;
+
+            img {
+                cursor: pointer;
+                width: 85px;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &--info {
+
+            &-unit {
+                padding-top: 55px;
+
+                h4 {
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: #000;
+                    padding-bottom: 8px;
+                }
+
+                h5 {
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: #686868;
+                }
+            }
+
+            &-button {      // all buttons box
+                padding-top: 35px;
+                display: flex;
+            }
+        }
+    }
+
+    &__quantity {
+        flex: 0 0 14%;
+        display: flex;
+        width: 30px;
+        justify-content: center;
+        align-content: center;
+
+        &--minus {
+            cursor: pointer;
+            color: #C4C4C4;
+            width: 14px;
+            height: 14px;
+            border-bottom: 1px solid #C4C4C4;
+            height: 25px;
+            display: flex;
+        }
+
+        &--amount {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+            border-bottom: 1px solid #C4C4C4;
+            height: 25px;
+            padding: 0 5px;
+        }
+
+        &--plus {
+            cursor: pointer;
+            display: flex;
+            color: #C4C4C4;
+            width: 14px;
+            height: 14px;
+            border-bottom: 1px solid #C4C4C4;
+            height: 25px;
+        }
+    }
+
+    &__price {
+        flex: 0 0 18%;
+        font-size: 20px;
+        font-weight: 400;
+        color: #000;
+    }
+
+    &__total {
+        flex: 0 0 18%;
+        font-size: 20px;
+        font-weight: 400;
+        color: #000;
+    }
+}
+
+
+.btn {
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: #fff;
+    color: #ED165F;
+    font-weight: 600;
+    font-size: 16px;
+
+    svg {
+        width: 16px;
+        height: 14px;
+        color: #ED165F;
+    }
+
+    &-favorite {
+        cursor: pointer;
+        margin-right: 80px;
+    }
+
+    &-remove {
+        cursor: pointer;
+    }
+}

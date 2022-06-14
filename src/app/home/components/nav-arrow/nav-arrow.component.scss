@@ -1,0 +1,22 @@
+.nav-arrow {
+    
+    &--hidden {
+        display: none;
+    }
+
+    &--fixed {
+        position: fixed;
+        right: 52px;
+        bottom: 258px;
+    }
+
+    &__button {
+
+        background-color: #FFFFFF;
+        width: 61px;
+        height: 50px;
+        border-radius: 5px;
+        border: 1px solid #000;
+        cursor: pointer;
+    }
+}

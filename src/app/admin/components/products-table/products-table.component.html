@@ -1,0 +1,24 @@
+<div class="card-box">
+    <table cellspacing="0">
+        <thead>
+            <tr>
+              <th *ngFor="let title of titles" scope="col">{{ title }}</th>
+              <th>
+                <button class="th-btn" (click)="newCardForm()">New</button>
+              </th>
+              
+            </tr>
+          </thead>
+        <tbody>
+            <tr class="tr-body" *ngFor="let card of cards; let row; let i = index" (click)="selectRow(card.id)" [class.active]="card.id == HighlightRow">
+                <td class="td-id">{{ i+1 }}</td>
+                <td>{{card.title}}</td>
+                <td>{{card.price}}</td>
+                <td class="td-imageUrl">{{card.imageUrl}}</td>
+                <td>
+                    <button (click)="deleteCard(row, $event)" class="td-btn">Delete</button>
+                </td>
+              </tr>
+        </tbody>
+    </table>
+</div>

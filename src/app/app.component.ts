@@ -1,10 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { CartItemsService } from './checkout/cart-items.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'safari';
+  
+
+  constructor(private cartItemsService: CartItemsService) {  }
+  
+  ngOnInit() {
+    
+
+  }
+
+  
 }
