@@ -12,9 +12,11 @@ export class ProfileComponent implements OnInit {
   isLoading: boolean = true;
   userProfileForm!: FormGroup;
 
-  constructor(public route: ActivatedRoute,
+  constructor(
+    public route: ActivatedRoute,
     private router: Router,
-    private accountService: AccountService) { }
+    private accountService: AccountService
+  ) { }
 
   ngOnInit(): void {
     this.userProfileForm = new FormGroup({

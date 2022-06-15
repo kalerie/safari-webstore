@@ -1,0 +1,40 @@
+.form-container {
+    // margin-left: 20px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-control {
+    display: flex;
+    border-radius: 5px;
+    width: 205px;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.btn {
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100px;
+    margin-right: 10px;
+
+    &-primary {
+        background-color: olivedrab;
+        border-color: olivedrab;
+        color: white;
+    }
+
+    &-warning {
+        background-color: #ffa343;
+        border-color: #FF8C00;
+        color: white;
+    }
+
+    &-default {
+        background-color: orangered;
+        border-color: orangered;
+        color: whitesmoke;
+    }
+}

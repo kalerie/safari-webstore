@@ -67,6 +67,50 @@
       "id": 11
     }
   ],
+  "colors": [
+    {
+      "id": 1,
+      "title": "Yellow",
+      "value": "#ffff00"
+    },
+    {
+      "title": "Red",
+      "value": "#f82f20",
+      "id": 2
+    },
+    {
+      "title": "Black",
+      "value": "#000000",
+      "id": 3
+    },
+    {
+      "title": "White",
+      "value": "#ffffff",
+      "id": 4
+    }
+  ],
+  "sizes": [
+    {
+      "id": 1,
+      "title": "Small",
+      "value": "S"
+    },
+    {
+      "id": 2,
+      "title": "Medium",
+      "value": "M"
+    },
+    {
+      "title": "Large",
+      "value": "L",
+      "id": 3
+    },
+    {
+      "title": "fsdf",
+      "value": "SM",
+      "id": 4
+    }
+  ],
   "users": [
     {
       "firstName": "first",

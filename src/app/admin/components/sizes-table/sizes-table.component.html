@@ -1,1 +1,20 @@
-<p>sizes-table works!</p>
+<table cellspacing="0" class="table">
+    <thead>
+        <tr class="heading">
+            <th *ngFor="let title of titles" scope="col">{{ title }}</th>
+            <th>
+                <button class="btn btn-new" (click)="newSizeForm()">New</button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="row" *ngFor="let item of sizes; let row; let i = index" (click)="selectRow(item.id!)" [class.active]="item.id == highlightRow">
+            <td class="row__id">{{ item.id }}</td>
+            <td>{{item.title}}</td>
+            <td>{{item.value}}</td>
+            <td>
+                <button (click)="deleteSize(item.id!, $event)" class="btn btn-delete">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

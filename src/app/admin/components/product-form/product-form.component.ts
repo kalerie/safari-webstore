@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../../common/interfaces/product.interface';
 import { CardService } from '../../card.service';
 import { NotificationService } from 'src/app/common/services/notification.service';
-
+import { FormType } from 'src/app/common/form-type.enum';
 
 @Component({
   selector: 'admin-product-form',
@@ -14,16 +14,33 @@ import { NotificationService } from 'src/app/common/services/notification.servic
 export class ProductFormComponent implements OnInit {
   newCardForm!: FormGroup;
   cardId?: number;
+  public formTypeEnum = FormType;
+  public routeType = this.route.snapshot.data['type'];
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private cardService: CardService,
     public route: ActivatedRoute,
     private router: Router,
-    private notifyService: NotificationService) {
+    private notifyService: NotificationService
+  ) {
       
-    }
+  }
 
   ngOnInit(): void {
+    this.subscribeRouteParamsChange();
+    this.initForm();
+  }
+
+  initForm() {
+    this.newCardForm = this.fb.group({
+      title: '',
+      price: '',
+      imageUrl: ''
+    })
+  }
+
+  subscribeRouteParamsChange() {
     this.route.params.subscribe((params) => {
       this.cardService.routeChange.next(params['id']);
       if (params['id']) {
@@ -31,20 +48,14 @@ export class ProductFormComponent implements OnInit {
         this.getCardAndPatchForm(params['id']);
       }
     })
-
-    this.newCardForm = this.fb.group({
-      title: '',
-      price: '',
-      imageUrl: ''
-    })
-    
   }
 
   updateCard(card: Product) {
     this.cardService.updateCard(card, this.cardId as number).subscribe(() => {
       this.cardService.updateChange.next();
+      this.notifyService.showSuccess('Card was updated');
     });
-    this.notifyService.showSuccess('Card was updated');
+    
   }
  
   getCardAndPatchForm(id: number) {
@@ -61,13 +72,14 @@ export class ProductFormComponent implements OnInit {
     this.cardService.addCard(card).subscribe(() => {
       this.cardService.updateChange.next();
       this.newCardForm.reset();
+      this.notifyService.showSuccess('Card was added');
     });
-    this.notifyService.showSuccess('Card was added');
+    
   }
 
   submit(): void {
     const card = this.newCardForm.value;
-    if(this.route.snapshot.data['type']==='create') {
+    if(this.routeType === this.formTypeEnum.CREATE) {
       this.addCard(card);
     } else {
        this.updateCard(card);

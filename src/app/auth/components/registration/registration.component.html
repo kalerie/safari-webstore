@@ -8,7 +8,7 @@
                 <em *ngIf="registrationForm.controls['firstName'].errors?.['required'] && registrationForm.controls['firstName'].touched">Required</em>
                 <em *ngIf="registrationForm.controls['firstName'].errors?.['minlength'] && registrationForm.controls['firstName'].touched">Must be 3 or more letters</em>
             </label>
-            <input formControlName="firstName" id="firstName" type="text" class="form-control" required>
+            <input formControlName="firstName" id="firstName" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="lastName">
@@ -16,7 +16,7 @@
                 <em *ngIf="registrationForm.controls['lastName'].errors?.['required'] && registrationForm.controls['lastName'].touched">Required</em>
                 <em *ngIf="registrationForm.controls['lastName'].errors?.['minlength'] && registrationForm.controls['lastName'].touched">Must be 3 or more letters</em>
             </label>
-            <input formControlName="lastName" id="lastName" type="text" class="form-control" required>
+            <input formControlName="lastName" id="lastName" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="email">
@@ -24,7 +24,7 @@
                 <em *ngIf="registrationForm.controls['email'].errors?.['required'] && registrationForm.controls['email'].touched">Required</em>
                 <em *ngIf="registrationForm.controls['email'].errors?.['email']">Please enter valid email</em>
             </label>
-            <input formControlName="email" id="email" type="text" class="form-control" required>
+            <input formControlName="email" id="email" class="form-control" required>
         </div>
 
         <div class="form-group">

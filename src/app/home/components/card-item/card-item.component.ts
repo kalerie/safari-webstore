@@ -17,9 +17,11 @@ export class CardItemComponent implements OnInit {
   @Input() currentUser!: boolean;
   @Output() favouriteClick = new EventEmitter()
 
-  constructor(private cartItemService: CartItemsService,
+  constructor(
+    private cartItemService: CartItemsService,
     private notifyService: NotificationService,
-    private dialog: DialogService) { }
+    private dialog: DialogService
+  ) { }
 
   ngOnInit(): void {
     

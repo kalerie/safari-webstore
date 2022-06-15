@@ -15,9 +15,11 @@ export class MainComponent implements OnInit {
   products: Product[] = [];
   currentUser!: User | null;
 
-  constructor(private cardService: CardService,
+  constructor(
+    private cardService: CardService,
     private userService: UserService,
-    private accountService: AccountService) { }
+    private accountService: AccountService
+  ) { }
 
   ngOnInit(): void {
     this.cardService.getCards().subscribe((cards) => (this.products = cards));

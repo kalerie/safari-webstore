@@ -1,1 +1,23 @@
-<p>colors-table works!</p>
+<table cellspacing="0" class="table">
+    <thead>
+        <tr class="heading">
+            <th *ngFor="let title of titles" scope="col">{{ title }}</th>
+            <th>
+                <button class="btn btn-new" (click)="newColorForm()">New</button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="row" *ngFor="let item of colors; let row" (click)="selectRow(item.id!)" [class.active]="item.id == highlightRow">
+            <td class="row__id">{{ item.id }}</td>
+            <td>{{item.title}}</td>
+            <td class="row__value">
+                <span [style.background]="item.value" class="row__value--mark"></span>
+                <p class="row__value--text">{{item.value}}</p>
+            </td>
+            <td>
+                <button (click)="deleteColor(item.id!, $event)" class="btn btn-delete">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

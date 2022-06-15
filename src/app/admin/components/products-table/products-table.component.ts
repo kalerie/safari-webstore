@@ -11,28 +11,37 @@ import { CardService } from '../../card.service';
 export class ProductsTableComponent implements OnInit {
   cards: Product[] = [];
   titles = ['#','Title', 'Price', 'ImageUrl'];
-  HighlightRow!: number;
+  highlightRow!: number;
 
-  constructor(private cardService: CardService,
+  constructor(
+    private cardService: CardService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
-    this.cardService.routeChange.subscribe((id) => {
-      this.HighlightRow = id;
-    });
+    this.subscribeRouteChange();
+    this.subscribeDataShouldUpdate();
     this.cardService.getCards().subscribe((cards) => (this.cards = cards));
+  }
+
+  subscribeRouteChange() {
+    this.cardService.routeChange.subscribe((id) => {
+      this.highlightRow = id;
+    });
+  }
+
+  subscribeDataShouldUpdate() {
     this.cardService.updateChange.subscribe({
       next: () => { 
         this.cardService.getCards().subscribe((cards) => (this.cards = cards))
       }
     });
-
   }
 
-  selectRow(index: any) {
-    this.HighlightRow = index;
+  selectRow(index: number) {
+    this.highlightRow = index;
     this.router.navigate(['/admin/products/', index]);
   }
   

@@ -13,10 +13,12 @@ import { MiniCartComponent } from '../../../home/components/mini-cart/mini-cart.
 export class HeaderComponent implements OnInit {
   cartItemsAmount?: number;
 
-  constructor(private cartItemsService: CartItemsService,
+  constructor(
+    private cartItemsService: CartItemsService,
     private router: Router,
     private userService: UserService,
-    private dialog: DialogService) { }
+    private dialog: DialogService
+  ) { }
 
   ngOnInit(): void {
     this.cartItemsService.cartUpdated.subscribe({

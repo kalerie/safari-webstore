@@ -13,8 +13,10 @@ export class FavoritesComponent implements OnInit {
   favorites: Favorit[] = [];
   isLoading: boolean = true;
 
-  constructor(private accountService: AccountService,
-    private cartItemService: CartItemsService) { }
+  constructor(
+    private accountService: AccountService,
+    private cartItemService: CartItemsService
+  ) { }
 
   ngOnInit(): void {
     this.refreshCartData();
