@@ -11,6 +11,7 @@ import { TokenInterceptor } from './common/interceptors/token.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { OverlayModule } from '@angular/cdk/overlay';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
     SharedModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    OverlayModule
+    OverlayModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     {
