@@ -7,8 +7,9 @@ export interface Product {
     title: string;
     price: number;
     imageUrl: string;
-    category: string;
     type: string;
+    category: string;
+    
 
     productColors?: ProductsColors[]
     // size?: Size;

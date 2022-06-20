@@ -7,7 +7,7 @@ import { DialogService } from 'src/app/common/services/dialog-service/dialogServ
 import { NotificationService } from 'src/app/common/services/notification.service';
 
 @Component({
-  selector: 'app-card-item',
+  selector: 'card-item',
   templateUrl: './card-item.component.html',
   styleUrls: ['./card-item.component.scss']
 })

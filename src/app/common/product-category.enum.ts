@@ -1,0 +1,31 @@
+export enum ClothesCategory {
+    ALL = '',
+    DRESSES = 'dresses',
+    DENIM = 'denim',
+    JEANS = 'jeans',
+    JUMPSUITS = 'jumpsuits',
+    TOPS = 'tops',
+    JACKETS_AND_COATS = 'jackets_and_coats',
+    PANTS = 'pants',
+    SHORTS = 'shorts',
+    SKIRTS = 'skirts',
+    LOUNGERIE_AND_UNDERWEAR = 'loungerie_and_underwear',
+    LEATHER = 'leather',
+    SWEATERS_AND_KNITS = 'sweaters_and_knits',
+}
+
+export enum ClothesCategoryLabel {
+    ALL = 'All',
+    DRESSES = 'Dresses',
+    DENIM = 'Denim',
+    JEANS = 'Jeans',
+    JUMPSUITS = 'Jumpsuits',
+    TOPS = 'Tops',
+    JACKETS_AND_COATS = 'Jackets and coats',
+    PANTS = 'Pants',
+    SHORTS = 'Shorts',
+    SKIRTS = 'Skirts',
+    LOUNGERIE_AND_UNDERWEAR = 'Loungerie & underwear',
+    LEATHER = 'Leather',
+    SWEATERS_AND_KNITS = 'Sweaters & knits',
+}

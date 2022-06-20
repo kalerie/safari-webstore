@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { forkJoin, mergeMap, Observable, of, Subject, switchMap, zip } from 'rxjs';
 import { Product } from '../common/interfaces/product.interface';
 import { HTTP_HEADERS } from '../common/constants/api-constants';
@@ -123,6 +123,27 @@ export class CardService {
     
     getCards(): Observable<Product[]> {
         return this.http.get<Product[]>(this.apiUrl);
+    }
+
+    getClothesCards(params?: HttpParams): Observable<Product[]> {
+        // const url = `${this.apiUrl}?type=clothes`;
+        console.log(params, this.http.get<Product[]>(this.apiUrl, {params}), 'cardService');
+        return this.http.get<Product[]>(this.apiUrl, {params});
+    }
+
+    getClothesCardsByCategory(category: string): Observable<Product[]> {
+        const url = `${this.apiUrl}?category=${category}`;
+        return this.http.get<Product[]>(url);
+    }
+
+    getShoesCards(): Observable<Product[]> {
+        const url = `${this.apiUrl}?type=shoes`;
+        return this.http.get<Product[]>(url);
+    }
+
+    getAccessoriesCards(): Observable<Product[]> {
+        const url = `${this.apiUrl}?type=accessories`;
+        return this.http.get<Product[]>(url);
     }
 
     addCard(card: Product): Observable<Product> {
