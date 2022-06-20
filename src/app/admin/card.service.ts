@@ -121,29 +121,8 @@ export class CardService {
         return this.http.get<Product>(`${this.apiUrl}/${cardId}`)
     }
     
-    getCards(): Observable<Product[]> {
-        return this.http.get<Product[]>(this.apiUrl);
-    }
-
-    getClothesCards(params?: HttpParams): Observable<Product[]> {
-        // const url = `${this.apiUrl}?type=clothes`;
-        console.log(params, this.http.get<Product[]>(this.apiUrl, {params}), 'cardService');
+    getCards(params?: HttpParams): Observable<Product[]> {
         return this.http.get<Product[]>(this.apiUrl, {params});
-    }
-
-    getClothesCardsByCategory(category: string): Observable<Product[]> {
-        const url = `${this.apiUrl}?category=${category}`;
-        return this.http.get<Product[]>(url);
-    }
-
-    getShoesCards(): Observable<Product[]> {
-        const url = `${this.apiUrl}?type=shoes`;
-        return this.http.get<Product[]>(url);
-    }
-
-    getAccessoriesCards(): Observable<Product[]> {
-        const url = `${this.apiUrl}?type=accessories`;
-        return this.http.get<Product[]>(url);
     }
 
     addCard(card: Product): Observable<Product> {

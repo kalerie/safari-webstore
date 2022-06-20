@@ -11,7 +11,6 @@
     display: flex;
     justify-content: space-between;
     
-
     &__filters{
         width: 300px;
         display: flex;
@@ -52,11 +51,16 @@
         }
 
         &--box {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 50px;
             padding-top: 32px;
             border-top: 1px solid rgba(0, 0, 0, 0.5);
+            color: #ED165F;
+
+            &-cards {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 50px;
+                
+            }
         }
     }
 }
@@ -190,10 +194,33 @@
 .price {
     &--title {
         font-weight: 600;
-        font-size: 20px;
-        text-transform: uppercase;
         padding-bottom: 16px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        &-text {
+            
+        font-size: 20px;
+        text-transform: uppercase;
+        }
+
+        &-remove {
+            cursor: pointer;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        &-clear {
+            font-size: 14px;
+            color: #C4C4C4;
+        }
+
+        &-icon {
+
+        }
     }
 
     &--list {
@@ -250,7 +277,6 @@
     }
 }
 
-
 .sort {
     &--select {
         width: 195px;
@@ -258,13 +284,20 @@
         box-sizing: border-box;
         background: #FFFFFF;
         border: 1px solid #000000;
-        padding: 0 16px;
+        padding: 0 8px;
     }
 
     &--option {
         font-size: 14px;
         font-weight: 600;
     }
+}
+
+.loading {
+    color: #ED165F;
+    padding-top: 32px;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+
 }
 
 #el { /* Change width and height */
