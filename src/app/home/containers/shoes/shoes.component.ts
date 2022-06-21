@@ -6,19 +6,13 @@ import { forkJoin } from 'rxjs';
 import { CardService } from 'src/app/admin/card.service';
 import { ColorService } from 'src/app/admin/color.service';
 import { SizeService } from 'src/app/admin/size.service';
+import { PRICE_RANGES } from 'src/app/common/constants/price-range-constant';
 import { Color } from 'src/app/common/interfaces/color.interface';
 import { Product } from 'src/app/common/interfaces/product.interface';
 import { Size } from 'src/app/common/interfaces/size.interface';
 import { buildLabelValueMap, LabelValueEntry } from 'src/app/common/label-value-map';
 import { ShoesCategory, ShoesCategoryLabel } from 'src/app/common/product-category.enum';
 
-const PRICE_RANGES = {
-  '0,10000' : '0,10000',
-  '10000,20000' : '10000,20000',
-  '20000,50000' : '20000,50000',
-  '50000,100000' : '50000,100000',
-  '100000,200000' : '100000,200000'
-}
 @Component({
   selector: 'app-shoes',
   templateUrl: './shoes.component.html',
