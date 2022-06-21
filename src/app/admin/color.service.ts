@@ -16,6 +16,11 @@ export class ColorService {
 
   constructor(private http: HttpClient) { }
 
+  getColorsById(ids:number[]): Observable<Color[]> {
+    const query = ids.map(el => `id=${el}`);
+    return this.http.get<Color[]>(`${this.apiUrl}?${query.join('&')}`);
+  }
+
   getColors(): Observable<Color[]> {
     return this.http.get<Color[]>(this.apiUrl);
   }

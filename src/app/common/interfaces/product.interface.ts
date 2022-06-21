@@ -1,4 +1,5 @@
 import { Color } from "./color.interface";
+import { ProductsColors } from "./products-colors.interface";
 import { Size } from "./size.interface";
 
 export interface Product {
@@ -9,6 +10,7 @@ export interface Product {
     category: string;
     type: string;
 
+    productColors?: ProductsColors[]
     // size?: Size;
-    // color?: Color;
+    // colors?: Color;
 }

@@ -16,6 +16,11 @@ export class SizeService {
 
   constructor(private http: HttpClient) { }
 
+  getSizesById(ids:number[]): Observable<Size[]> {
+    const query = ids.map(el => `id=${el}`);
+    return this.http.get<Size[]>(`${this.apiUrl}?${query.join('&')}`);
+  }
+
   getSizes(): Observable<Size[]> {
     return this.http.get<Size[]>(this.apiUrl);
   }

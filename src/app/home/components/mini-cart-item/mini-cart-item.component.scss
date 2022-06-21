@@ -1,0 +1,255 @@
+.container {
+    margin: 64px 145px;
+}
+
+.title {
+    margin-bottom: 78px;
+    font-size: 24px;
+    font-weight: 800;
+    color: #000;
+}
+
+
+///////////// HEADING STYLES
+.header-box {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 600;
+    color: #686868;
+    display: flex;
+    text-align: center;
+    margin-bottom: 16px;
+
+    &__description {
+        flex: 0 0 50%;
+        text-align: start;
+    }
+
+    &__quantity {
+        flex: 0 0 14%;
+    }
+
+    &__price {
+        flex: 0 0 18%;
+    }
+
+    &__total {
+        flex: 0 0 18%;
+    }
+}
+
+
+//////////// ITEM STYLES //////////////////////////////////////////////////////////////////////////////////////////
+.item-box {
+    height: 169px;
+    border-radius: 2px;
+    border: 1.5px solid #E1E1E1;
+    display: flex;
+    align-content: center;
+    margin-bottom: 32px;
+
+    & > * {
+        &:not(:last-child) {
+            border-right: 1.5px solid #E1E1E1;
+        }
+
+        &:not(:first-child) {
+            text-align: center;
+            padding-top: 55px;
+        }
+    }
+
+    &__description {
+        flex: 0 0 50%;
+        display: flex;
+
+        &--image {
+            padding: 30px;
+            align-self: center;
+
+            img {
+                cursor: pointer;
+                width: 85px;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &--info {
+            
+
+            &-unit {
+                padding-top: 55px;
+
+                h4 {
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: #000;
+                    padding-bottom: 8px;
+                }
+
+                h5 {
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: #686868;
+                }
+            }
+
+            &-button {      // all buttons box
+                padding-top: 35px;
+                display: flex;
+
+            }
+        }
+    }
+
+    &__quantity {
+        flex: 0 0 14%;
+        display: flex;
+        width: 30px;
+        justify-content: center;
+        align-content: center;
+
+        &--minus {
+            cursor: pointer;
+            color: #C4C4C4;
+            width: 14px;
+            height: 14px;
+            border-bottom: 1px solid #C4C4C4;
+            height: 25px;
+            display: flex;
+        }
+
+        &--amount {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+            border-bottom: 1px solid #C4C4C4;
+            height: 25px;
+            padding: 0 5px;
+        }
+
+        &--plus {
+            cursor: pointer;
+            display: flex;
+            color: #C4C4C4;
+            width: 14px;
+            height: 14px;
+            border-bottom: 1px solid #C4C4C4;
+            height: 25px;
+        }
+    }
+
+    &__price {
+        flex: 0 0 18%;
+        font-size: 20px;
+        font-weight: 400;
+        color: #000;
+    }
+
+    &__total {
+        flex: 0 0 18%;
+        font-size: 20px;
+        font-weight: 400;
+        color: #000;
+    }
+}
+
+
+
+
+//////////// BUTTON STYLES
+.btn {
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: #fff;
+    color: #ED165F;
+    font-weight: 600;
+    font-size: 16px;
+
+    svg {
+        width: 16px;
+        height: 14px;
+        color: #ED165F;
+    }
+
+    &-favorite {
+        cursor: pointer;
+        margin-right: 80px;
+    }
+
+    &-remove {
+        cursor: pointer;
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+///////////// TOTALS STYLES
+.overall-box {
+    margin-top: 64px;
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        &-total {
+            display: flex;
+            justify-content: space-between;
+            width: 240px;
+
+            h2 {
+                font-size: 24px;
+                font-weight: 600;
+                color: #000;
+            }
+        }
+
+        &-delivery {
+            margin-top: 18px;
+            p {
+                font-size: 16px;
+                font-weight: 600;
+                color: #686868;
+            }
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 64px;
+
+        & > * {
+            width: 330px;
+            height: 45px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        &-continue {
+            margin-right: 64px;
+            border: 1px solid #ED165F;
+            font-size: 18px;
+            font-weight: 800;
+            color: #000;
+            background-color: white;
+        }
+
+        &-proceed {
+            border: 1px solid #ED165F;
+            font-size: 18px;
+            font-weight: 800;
+            color: #fff;
+            background-color: #ED165F;
+        }
+    }
+}

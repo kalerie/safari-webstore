@@ -27,12 +27,6 @@
     {
       "title": "Title of img",
       "price": "10000",
-      "imageUrl": "https://sandbella.com/userdata/public/gfx/73222.jpg",
-      "id": 5
-    },
-    {
-      "title": "Title of img",
-      "price": "10000",
       "imageUrl": "https://img01.ztat.net/outfit/5f3076462a9c44fbbe24af8229ea9aa5/771e5ffa5cd5422cadae008a9179cbd8.jpg",
       "id": 6
     },
@@ -67,6 +61,75 @@
       "id": 11
     }
   ],
+  "productsColors": [
+    {
+      "productId": 4,
+      "colorId": 3,
+      "id": 9
+    },
+    {
+      "productId": 4,
+      "colorId": 4,
+      "id": 10
+    },
+    {
+      "productId": 4,
+      "colorId": 16,
+      "id": 11
+    },
+    {
+      "productId": 3,
+      "colorId": 15,
+      "id": 13
+    },
+    {
+      "productId": 1,
+      "colorId": 3,
+      "id": 14
+    },
+    {
+      "productId": 1,
+      "colorId": 5,
+      "id": 15
+    },
+    {
+      "productId": 1,
+      "colorId": 15,
+      "id": 16
+    },
+    {
+      "productId": 2,
+      "colorId": 3,
+      "id": 17
+    },
+    {
+      "productId": 3,
+      "colorId": 17,
+      "id": 18
+    },
+    {
+      "productId": 3,
+      "colorId": 15,
+      "id": 19
+    }
+  ],
+  "productsSizes": [
+    {
+      "productId": 1,
+      "sizeId": 2,
+      "id": 1
+    },
+    {
+      "productId": 2,
+      "sizeId": 2,
+      "id": 2
+    },
+    {
+      "productId": 3,
+      "sizeId": 2,
+      "id": 3
+    }
+  ],
   "colors": [
     {
       "id": 1,
@@ -87,6 +150,81 @@
       "title": "White",
       "value": "#ffffff",
       "id": 4
+    },
+    {
+      "title": "Blue",
+      "value": "#0000ff",
+      "id": 5
+    },
+    {
+      "title": "Silver",
+      "value": "#C0C0C0",
+      "id": 6
+    },
+    {
+      "title": "Gray",
+      "value": "#808080",
+      "id": 7
+    },
+    {
+      "title": "Maroon",
+      "value": "#800000",
+      "id": 8
+    },
+    {
+      "title": "Olive",
+      "value": "#808000",
+      "id": 9
+    },
+    {
+      "id": 10,
+      "title": "Lime",
+      "value": "#00FF00"
+    },
+    {
+      "id": 11,
+      "title": "Green",
+      "value": "#008000"
+    },
+    {
+      "title": "Aqua",
+      "value": "#00FFFF",
+      "id": 12
+    },
+    {
+      "title": "Teal",
+      "value": "#008080",
+      "id": 13
+    },
+    {
+      "title": "Navy",
+      "value": "#000080",
+      "id": 14
+    },
+    {
+      "title": "Fuchsia",
+      "value": "#FF00FF",
+      "id": 15
+    },
+    {
+      "title": "Purple",
+      "value": "#800080",
+      "id": 16
+    },
+    {
+      "title": "Deep pink",
+      "value": "rgb(255, 20, 147)",
+      "id": 17
+    },
+    {
+      "title": "Orange",
+      "value": "rgb(255, 165, 0)",
+      "id": 18
+    },
+    {
+      "title": "Gold",
+      "value": "rgb(255, 215, 0)",
+      "id": 19
     }
   ],
   "sizes": [
