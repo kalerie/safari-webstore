@@ -1,0 +1,112 @@
+<div class="container">
+    <h1 class="title">Clothes</h1>
+    <div class="clothes-box">
+        <div class="clothes-box__filters">
+            <div class="clothes-box__filters--category">
+                <div class="category--title">
+                    Category
+                </div>
+                <ul class="category--list">
+                    <li class="category--item" *ngFor="let category of categories" [class.category--active]="category.value == highlightCategory" (click)="goCategory(category.value)">
+                        {{ category.label }}
+                    </li>
+                </ul>
+            </div>
+            <div class="clothes-box__filters--size">
+                <div class="size--title">
+                    Size
+                </div>
+                <div class="size--list">
+                    <div class="size--item size--active">
+                        13
+                    </div>
+                    <div class="size--item" *ngFor="let size of sizes">
+                        {{ size.title }}
+                    </div>
+                </div>
+            </div>
+            <div class="clothes-box__filters--color">
+                <div class="color--title">
+                    Color
+                </div>
+                <div class="color--list">
+                    <div class="color--item color--active">
+                        <span class="color--item-view" style="background:#ff4500"></span>
+                        <p class="color--item-title">Orangered</p>
+                        
+                    </div>
+                    <div class="color--item" *ngFor="let color of colors">
+                        <span class="color--item-view" [style.background]="color.value"></span>
+                        <p class="color--item-title">{{ color.title }}</p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="clothes-box__filters--price">
+                <div class="price--title">
+                    <div class="price--title-text">Price</div>
+                    <div class="price--title-remove" (click)="removePriceFilter()">
+                        
+                        <div class="price--title-clear">Clear</div>
+                        <svg class="price--title-icon" width="14" height="14" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.59 7L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41L15.59 7Z" fill="#C4C4C4"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="price--list">
+                    <div class="price--item">
+                        <input [formControl]="priceRadioControl" value="0,10000" class="price--item-input" type="radio" name="price" id="el" (change)="priceFilterChange(0, 10000)">
+                        <label class="price--item-label" for="0to10">₦0&emsp;-&emsp;₦10,000</label>
+                    </div>
+                    <div class="price--item">
+                        <input [formControl]="priceRadioControl" value="10000,20000" class="price--item-input" type="radio" name="price" id="el" (change)="priceFilterChange(10000, 20000)">
+                        <label class="price--item-label" for="10to20">₦10,000&emsp;-&emsp;₦20,000</label>
+                    </div>
+                    <div class="price--item">
+                        <input [formControl]="priceRadioControl" value="20000,50000" class="price--item-input" type="radio" name="price" id="el" (change)="priceFilterChange(20000, 50000)">
+                        <label class="price--item-label" for="20to50">₦20,000&emsp;-&emsp;₦50,000</label>
+                    </div>
+                    <div class="price--item">
+                        <input [formControl]="priceRadioControl" value="50000,100000" class="price--item-input" type="radio" name="price" id="el" (change)="priceFilterChange(50000, 100000)">
+                        <label class="price--item-label" for="50to100">₦50,000&emsp;-&emsp;₦100,000</label>
+                    </div>
+                    <div class="price--item">
+                        <input [formControl]="priceRadioControl" value="100000,200000" class="price--item-input" type="radio" name="price" id="el" (change)="priceFilterChange(100000, 200000)">
+                        <label class="price--item-label" for="100to200">₦100,000&emsp;-&emsp;₦200,000</label>
+                    </div>
+                </div>
+                <div class="price--form">
+                    <input [formControl]="priceFromInput" class="price--form--input" placeholder="₦">
+                    <p class="price--form--text">to</p>
+                    <input [formControl]="priceToInput" class="price--form--input" placeholder="₦">
+                    <button class="price--form--button" (click)="priceFilterChange(priceFromInput.value, priceToInput.value)">Apply</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="clothes-box__items">
+            <div class="clothes-box__items--sort">
+                <select (change)="sortCards(sort.value)" #sort name="" id="" class="sort--select" [formControl]="sortingOrderSelect">
+                    <option value="recommended" class="sort--option">Sort by: Recommended</option>
+                    <option value="latest" class="sort--option">Sort by: Latest</option>
+                    <option value="low-price" class="sort--option">Sort by: Lowest price</option>
+                    <option value="high-price" class="sort--option">Sort by: The highest price</option>
+                </select>
+            </div>
+
+            <div *ngIf="isLoading; else loaded" class="loading">
+                <h3>Loading...</h3>
+            </div>
+            <ng-template #loaded>
+                <div class="clothes-box__items--box">
+                    <h3 *ngIf="products.length <= 0">No products awailable with current filers, try other options</h3>
+                    <div class="clothes-box__items--box-cards">
+                        <card-item *ngFor="let product of products" [product]="product" style="width: 297px;"></card-item>
+                    </div>
+                </div>
+            </ng-template>
+            
+            
+        </div>
+    </div>
+</div>

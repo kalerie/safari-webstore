@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { forkJoin, mergeMap, Observable, of, Subject, switchMap, zip } from 'rxjs';
 import { Product } from '../common/interfaces/product.interface';
-import { HTTP_HEADERS } from '../common/constants/api-constants';
+import { HTTP_HEADERS } from '../common/constants/api-constant';
 import { ProductsColors } from '../common/interfaces/products-colors.interface';
 import { ColorService } from './color.service';
 import { ProductsSizes } from '../common/interfaces/products-sizes.interface';
@@ -121,8 +121,8 @@ export class CardService {
         return this.http.get<Product>(`${this.apiUrl}/${cardId}`)
     }
     
-    getCards(): Observable<Product[]> {
-        return this.http.get<Product[]>(this.apiUrl);
+    getCards(params?: HttpParams): Observable<Product[]> {
+        return this.http.get<Product[]>(this.apiUrl, {params});
     }
 
     addCard(card: Product): Observable<Product> {

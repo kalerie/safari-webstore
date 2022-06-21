@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Size } from '../common/interfaces/size.interface';
-import { HTTP_HEADERS } from '../common/constants/api-constants';
+import { HTTP_HEADERS } from '../common/constants/api-constant';
 
 @Injectable({
   providedIn: 'root'
