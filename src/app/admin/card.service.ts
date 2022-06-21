@@ -58,11 +58,9 @@ export class CardService {
     }
 
     setProductsColors(productColors: ProductsColors[], id: number) {
-        console.log(productColors)
         return this.deleteProductColors(id)
             .pipe(
                 switchMap((obj: any) => {
-                    console.log(productColors)
                     return forkJoin(productColors.map(el => this.createProductColor(el)))
                 })
             )

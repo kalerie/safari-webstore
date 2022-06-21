@@ -59,7 +59,6 @@ export class ProductFormComponent implements OnInit {
     this.newCardForm =  this.fb.group({
       title: '',
       price: '',
-      // colors: '',
       imageUrl: ''
     })
     this.isLoading = false;
@@ -77,18 +76,10 @@ export class ProductFormComponent implements OnInit {
   }
 
   updateCard(card: Product) {
-    console.log(card);
-
-    // this.cardService.getCard(id)
-    //   .pipe(switchMap(card => {
-    //       return zip(this.cardService.getProductColorsByProductId(id), of(card), this.colorService.getColors(), this.sizeService.getSizes(), this.cardService.getProductSizesByProductId(id))
-    //     })).subscribe(([productColors, card, colors, sizes, productSizes]) =>
-    
     this.cardService.updateCard(card, this.cardId as number)
       .pipe(
         switchMap((obj) => {
           let arr = [];
-
           if(this.selectedColors.length > 0) {
             let productColors: ProductsColors[] = this.selectedColors.map(el => ({
               productId: this.cardId as number,
@@ -109,13 +100,11 @@ export class ProductFormComponent implements OnInit {
           } else {
             return of([])
           }
-        
     })
       ).subscribe(() => {
       this.cardService.updateChange.next();
       this.notifyService.showSuccess('Card was updated');
     });
-    
   }
  
   getCardAndPatchForm(id: number) {
@@ -123,17 +112,21 @@ export class ProductFormComponent implements OnInit {
       .pipe(switchMap(card => {
           return zip(this.cardService.getProductColorsByProductId(id), of(card), this.colorService.getColors(), this.sizeService.getSizes(), this.cardService.getProductSizesByProductId(id))
         })).subscribe(([productColors, card, colors, sizes, productSizes]) => {
-          this.newCardForm.patchValue({
-            title: card.title,
-            price: card.price,
-            imageUrl: card.imageUrl
-          })
-            this.selectedColors = productColors.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
-            this.colors = colors.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
-            this.selectedSizes = productSizes.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
-            this.sizes = sizes.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
-            this.isLoading = false;
+          this.patchForm(productColors, card, colors, sizes, productSizes);
         })
+  }
+
+  patchForm(productColors: Color[], card: any, colors: Color[], sizes: Size[], productSizes: Size[]) {
+    this.newCardForm.patchValue({
+      title: card.title,
+      price: card.price,
+      imageUrl: card.imageUrl
+    })
+      this.selectedColors = productColors.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+      this.colors = colors.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+      this.selectedSizes = productSizes.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+      this.sizes = sizes.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+      this.isLoading = false;
   }
 
   addCard(card: Product) {
@@ -142,7 +135,6 @@ export class ProductFormComponent implements OnInit {
       this.newCardForm.reset();
       this.notifyService.showSuccess('Card was added');
     });
-    
   }
 
   submit(): void {

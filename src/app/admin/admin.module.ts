@@ -13,7 +13,6 @@ import { ProductsComponent } from './containers/products/products.component';
 import { ColorsComponent } from './containers/colors/colors.component';
 import { SizesComponent } from './containers/sizes/sizes.component';
 import { MultiSelectComponent } from './components/multi-select/multi-select.component';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { SharedModule } from '../common/shared.module';
 
 const adminRouter = [
@@ -71,18 +70,7 @@ const adminRouter = [
             data: {type: 'update'},
           }
         ]
-      },
-
-      // {
-      //   path: 'new',
-      //   data: {type: 'create'},
-      //   component: ProductFormComponent
-      // },
-      // {
-      //   path: ':id',
-      //   component: ProductFormComponent,
-      //   data: {type: 'update'},
-      // }
+      }
     ]
   }
 ]
@@ -107,7 +95,6 @@ const adminRouter = [
     RouterModule.forChild(adminRouter),
     FormsModule,
     ReactiveFormsModule,
-    NgMultiSelectDropDownModule.forRoot(), /////////// under question
   ]
 })
 export class AdminModule { }

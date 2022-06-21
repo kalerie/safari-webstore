@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
   dialogOpen() {
     const dialogRef = this.dialog.open(MiniCartComponent);
     dialogRef.afterClosed().subscribe(() => {
-      console.log('Dialog closed');
+      console.log('Dialog closed');   // it`s need for future
     })
   }
 
