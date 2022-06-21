@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { forkJoin, mergeMap, Observable, of, Subject, switchMap, zip } from 'rxjs';
 import { Product } from '../common/interfaces/product.interface';
-import { HTTP_HEADERS } from '../common/constants/api-constants';
+import { HTTP_HEADERS } from '../common/constants/api-constant';
 import { ProductsColors } from '../common/interfaces/products-colors.interface';
 import { ColorService } from './color.service';
 import { ProductsSizes } from '../common/interfaces/products-sizes.interface';
