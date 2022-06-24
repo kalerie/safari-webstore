@@ -1,0 +1,78 @@
+<h1 *ngIf="routeType === formTypeEnum.CREATE">Add new item</h1>
+<h1 *ngIf="routeType === formTypeEnum.UPDATE">Update item</h1>
+
+<div *ngIf="isLoading; else loaded" class="loading">
+    <h3>Loading...</h3>
+</div>
+
+<ng-template #loaded>
+    <div class="form-container">
+        <form [formGroup]="newCardForm" (ngSubmit)="submit()" autocomplete="off">
+            <div class="form-group">
+                <label for="title">Product title:</label>
+                <input formControlName="title" id="title" class="form-control" required placeholder="Name of item...">
+            </div>
+            <div class="form-group">
+                <label for="price">Product price:</label>
+                <input formControlName="price" id="price" class="form-control" required placeholder="10000">
+            </div>
+            <div class="form-group">
+                <label for="type">Type of product:</label>
+                <select #typeSelected formControlName="type" class="form-control" (change)="onTypeSelected(typeSelected.value)" required>
+                    <option *ngFor="let type of types" [value]="type.value">
+                     {{ type.label }}
+                    </option>
+                  </select> 
+            </div>
+            <div class="form-group">
+                <label for="category">Select category:</label>
+                <select formControlName="category" class="form-control" required>
+                    <option *ngFor="let category of categories" [value]="category.value">
+                     {{ category.label }}
+                    </option>
+                  </select> 
+            </div>
+
+            <div class="form-group">
+                <admin-multi-select (onItemChange)="colorChange($event)" [selectedItems]="selectedColors" [items]="colors" [dropdownElTemplate]="dropdownColorTemplate" [selectedItemTemplate]="selectedColorTemplate" [title]="'Select Colors'" [placeholder]="'Search color...'">
+                    <ng-template #dropdownColorTemplate let-item="item">
+                        <span [style.background]="item.value" class="dropdown-color"></span>
+                        <p class="dropdown-title">{{ item.title }}</p>
+                    </ng-template>
+                    <ng-template #selectedColorTemplate let-item="item">
+                        <span [style.background]="item.value" class="area-color"></span>
+                        <p class="area-title">{{ item.title }}</p>
+                        <svg class="area-icon" width="13" height="13" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.59 7L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41L15.59 7Z" fill="#2E3A59"></path>
+                        </svg>
+                    </ng-template>
+                </admin-multi-select>
+                
+
+                <admin-multi-select (onItemChange)="sizeChange($event)" [selectedItems]="selectedSizes" [items]="sizes" [dropdownElTemplate]="dropdownSizeTemplate" [selectedItemTemplate]="selectedSizeTemplate" [title]="'Select Sizes'" [placeholder]="'Search size...'">
+                    <ng-template #dropdownSizeTemplate let-item="item">
+                        <p class="dropdown-title">{{ item.title }} - {{ item.value }}</p>
+                    </ng-template>
+                    <ng-template #selectedSizeTemplate let-item="item">
+                        <p class="area-title">{{ item.title }} - {{ item.value }}</p>
+                        <svg class="area-icon" width="13" height="13" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.59 7L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41L15.59 7Z" fill="#2E3A59"></path>
+                        </svg>
+                    </ng-template>
+                </admin-multi-select>
+            </div>
+        
+
+
+            <div class="form-group">
+                <label for="imageUrl">Image URL:</label>
+                <input formControlName="imageUrl" id="imageUrl" class="form-control" required placeholder="http://..." required pattern=".*\/.*.(png|jpg|webp|jpeg)">
+                <img [src]="newCardForm.controls['imageUrl'].value" *ngIf="newCardForm.controls['imageUrl']?.valid" />
+            </div>
+            <button type="submit" [disabled]="newCardForm.invalid" class="btn btn-primary">
+                {{ routeType === formTypeEnum.CREATE ? 'Create' : 'Update' }}
+            </button>
+            <button (click)="cancel()" type="button" class="btn btn-default">Cancel</button>
+        </form>
+    </div>
+</ng-template>
