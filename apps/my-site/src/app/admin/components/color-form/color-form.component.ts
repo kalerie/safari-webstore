@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormType } from '../../../common/form-type.enum';
-import { Color } from '../../../common/interfaces/color.interface';
 import { NotificationService } from '../../../common/services/notification.service';
 import { ColorService } from '../../color.service';
+import { Color } from '@safari-store/api-interfaces';
 
 @Component({
   selector: 'admin-color-form',
@@ -61,7 +61,7 @@ export class ColorFormComponent implements OnInit {
       this.colorService.updateChange.next();
       this.notifyService.showSuccess('Item was updated');
     });
-    
+
   }
 
   addColor(color: Color) {
@@ -70,7 +70,7 @@ export class ColorFormComponent implements OnInit {
       this.newColorForm.reset();
       this.notifyService.showSuccess('Item was added');
     });
-    
+
   }
 
   submit() {

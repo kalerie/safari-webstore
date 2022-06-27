@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { Size, SizeSchema } from "@safari-store/api-interfaces";
 import { SizesController } from "./sizes.controller";
 import { SizesService } from "./sizes.service";
+import { SizeModel, SizeSchema } from './size.schemas';
 
 @Module({
     providers: [
@@ -13,7 +13,7 @@ import { SizesService } from "./sizes.service";
     ],
     imports: [
         MongooseModule.forFeature([
-            {name: Size.name, schema: SizeSchema}
+            {name: SizeModel.name, schema: SizeSchema}
         ])
     ]
 })

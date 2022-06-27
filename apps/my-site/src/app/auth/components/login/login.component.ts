@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '../../../common/interfaces/user.interface';
 import { UserService } from '../../user.service';
+import { NotificationService } from '../../../common/services/notification.service';
 
 @Component({
   selector: 'auth-login',
@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private notifyService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -31,18 +32,16 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
     };
-    
-    this.userService.login(userCredentials).subscribe((bol) => {
-      if(bol){
+
+    this.userService.login(userCredentials).subscribe((loginUser) => {
+      if(loginUser){
+        this.notifyService.showSuccess('You are logged in');
+        this.userService.setUserIdToLocalStorage(loginUser.token);
         this.router.navigate(['/']);
       } else {
+        this.notifyService.showSuccess('Enable to login, please try again'); //check spell
         this.authFailed = true;
       }
-      
     });
-    // this.userService.addUser(user).subscribe(() => {
-    //   this.router.navigate(['/auth/login']);
-    // });
-    // this.registrationForm.reset();
   }
 }

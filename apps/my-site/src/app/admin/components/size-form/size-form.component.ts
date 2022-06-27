@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormType } from '../../../common/form-type.enum';
-import { Size } from '../../../common/interfaces/size.interface';
 import { NotificationService } from '../../../common/services/notification.service';
 import { SizeService } from '../../size.service';
+import { Size } from '@safari-store/api-interfaces';
 
 @Component({
-  selector: 'addmin-size-form',
+  selector: 'admin-size-form',
   templateUrl: './size-form.component.html',
   styleUrls: ['./size-form.component.scss']
 })
@@ -61,7 +61,7 @@ export class SizeFormComponent implements OnInit {
       this.sizeService.updateChange.next();
       this.notifyService.showSuccess('Item was updated');
     });
-    
+
   }
 
   addSize(size: Size) {
@@ -70,7 +70,7 @@ export class SizeFormComponent implements OnInit {
       this.newSizeForm.reset();
       this.notifyService.showSuccess('Item was added');
     });
-    
+
   }
 
   submit() {

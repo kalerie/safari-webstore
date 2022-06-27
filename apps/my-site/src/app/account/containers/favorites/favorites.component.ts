@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItemsService } from '../../../checkout/cart-items.service';
-import { CartItem } from '../../../common/interfaces/cart-item.interface';
 import { AccountService } from '../../account.service';
-import { Favorit } from '../../../common/interfaces/favorit.interface';
-
+import { CartItem, Product } from '@safari-store/api-interfaces';
 
 @Component({
   selector: 'account-favorites',
@@ -11,7 +9,7 @@ import { Favorit } from '../../../common/interfaces/favorit.interface';
   styleUrls: ['./favorites.component.scss']
 })
 export class FavoritesComponent implements OnInit {
-  favorites: Favorit[] = [];
+  favorites: Product[] = [];
   isLoading: boolean = true;
 
   constructor(
@@ -24,20 +22,20 @@ export class FavoritesComponent implements OnInit {
   }
 
   refreshCartData() {
-    this.accountService.getFavoritesByUserId().subscribe((arr) => {
+    this.accountService.getUserFavorites().subscribe((arr) => {
       this.favorites = arr;
       this.isLoading = false;
     });
   }
 
-  removeFavorite(item: Favorit) {
+  removeFavorite(id: string) {
     this.isLoading = true;
-    this.accountService.removeFavorite(item.id as number).subscribe(() => {
+    this.accountService.removeFavorite(id).subscribe(() => {
       this.refreshCartData();
     });
   }
 
-  addToCart(item: Favorit) {
+  addToCart(item: any) {
     const cartItem: CartItem = {
       title: item.product!.title,
       productId: item.product?._id as string,
@@ -47,7 +45,7 @@ export class FavoritesComponent implements OnInit {
       subTotal: item.product!.price
     }
     this.cartItemService.addItem(cartItem);
-    
+
   }
 
 }

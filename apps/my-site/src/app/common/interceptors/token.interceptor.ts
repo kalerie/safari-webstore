@@ -10,8 +10,15 @@ export class TokenInterceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, res: HttpHandler): Observable<HttpEvent<any>> {
-        const now = new Date();
-        console.log( now.toUTCString(), req.url, req.method );  // inportant
-        return res.handle(req);
+      const now = new Date();
+      console.log( now.toUTCString(), req.url, req.method );  // important
+      req = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${localStorage.getItem('user')}`
+        }
+      });
+      return res.handle(req);
     }
+
+
 }

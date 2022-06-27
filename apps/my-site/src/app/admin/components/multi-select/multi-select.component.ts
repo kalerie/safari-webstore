@@ -1,5 +1,15 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, TemplateRef } from '@angular/core';
-import { DictionaryEntity } from '../../../common/interfaces/dictionary-entity.interface';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  TemplateRef
+} from '@angular/core';
+import { DictionaryEntity } from '@safari-store/api-interfaces';
 
 @Component({
   selector: 'admin-multi-select',
@@ -30,7 +40,7 @@ export class MultiSelectComponent implements OnInit, OnChanges {
       this.isDropdownShow = true;
     }
   }
-  
+
   @HostListener('document:click')
   clickout() {
     let containerDropdownEl = this.eleRef.nativeElement.querySelector('#dropdown') as HTMLElement;
@@ -56,10 +66,6 @@ export class MultiSelectComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    // console.log(this.selectedItems, 'selectedItems');
-    // console.log(this.items, 'items');
-    
-    
       if(this.selectedItems.length > 0) {
         this.items = this.items.filter(el => {
                return !this.selectedItems.find(element => {

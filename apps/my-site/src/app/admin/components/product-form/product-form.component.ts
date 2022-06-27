@@ -3,16 +3,21 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CardService } from '../../card.service';
 import { ColorService } from '../../color.service';
-import { forkJoin, of, switchMap, zip } from 'rxjs';
+import { of, switchMap, zip } from 'rxjs';
 import { SizeService } from '../../size.service';
 import { FormType } from '../../../common/form-type.enum';
 import { NotificationService } from '../../../common/services/notification.service';
-import { CreateProductDto, UpdateProductDto } from '@safari-store/api-interfaces';
-import { Product } from '../../../common/interfaces/product.interface';
-import { DictionaryEntity } from '../../../common/interfaces/dictionary-entity.interface';
+import { CreateProductDto, DictionaryEntity, Product, UpdateProductDto } from '@safari-store/api-interfaces';
 import { buildLabelValueMap, LabelValueEntry } from '../../../common/label-value-map';
 import { ProductType, ProductTypeLabel } from '../../../common/product-type.enum';
-import { AccessoriesCategory, AccessoriesCategoryLabel, ClothesCategory, ClothesCategoryLabel, ShoesCategory, ShoesCategoryLabel } from '../../../common/product-category.enum';
+import {
+  AccessoriesCategory,
+  AccessoriesCategoryLabel,
+  ClothesCategory,
+  ClothesCategoryLabel,
+  ShoesCategory,
+  ShoesCategoryLabel
+} from '../../../common/product-category.enum';
 
 @Component({
   selector: 'admin-product-form',
@@ -31,7 +36,7 @@ export class ProductFormComponent implements OnInit {
   selectedSizes: DictionaryEntity[] = [];
   types: LabelValueEntry[] = buildLabelValueMap(ProductTypeLabel, ProductType);
   categories: LabelValueEntry[] = [];
-  
+
 
   constructor(
     private fb: FormBuilder,
@@ -43,7 +48,7 @@ export class ProductFormComponent implements OnInit {
     private sizeService: SizeService,
     private cdr: ChangeDetectorRef,
   ) {
-      
+
   }
 
   ngOnInit(): void {
@@ -52,7 +57,6 @@ export class ProductFormComponent implements OnInit {
   }
 
   onTypeSelected(type: string) {
-    console.log(type);
     if(type === 'clothes') {
       this.categories = buildLabelValueMap(ClothesCategoryLabel, ClothesCategory);
     } else if(type === 'shoes') {
@@ -110,7 +114,7 @@ export class ProductFormComponent implements OnInit {
       this.notifyService.showSuccess('Card was updated');
     });
   }
- 
+
   getCardAndPatchForm(id: string) {
     this.cardService.getCard(id)
       .pipe(switchMap(card => {
@@ -121,7 +125,7 @@ export class ProductFormComponent implements OnInit {
         })
   }
 
-  patchForm(card: Product, colors: DictionaryEntity[], sizes: DictionaryEntity[]) {    
+  patchForm(card: Product, colors: DictionaryEntity[], sizes: DictionaryEntity[]) {
     if(card.type === 'clothes') {
       this.categories = buildLabelValueMap(ClothesCategoryLabel, ClothesCategory);
     } else if(card.type === 'shoes') {

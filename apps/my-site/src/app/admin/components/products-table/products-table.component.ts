@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from '../../../common/interfaces/product.interface';
 import { buildLabelValueMap, LabelValueEntry } from '../../../common/label-value-map';
 import { ProductCategory, ProductCategoryLabel } from '../../../common/product-category.enum';
 import { ProductType, ProductTypeLabel } from '../../../common/product-type.enum';
 import { CardService } from '../../card.service';
+import { Product } from '@safari-store/api-interfaces';
 
 @Component({
   selector: 'admin-products-table',
@@ -40,7 +40,7 @@ export class ProductsTableComponent implements OnInit {
 
   subscribeDataShouldUpdate() {
     this.cardService.updateChange.subscribe({
-      next: () => { 
+      next: () => {
         this.cardService.getCards().subscribe((cards) => (this.cards = cards))
       }
     });
@@ -50,7 +50,7 @@ export class ProductsTableComponent implements OnInit {
     this.highlightRow = index;
     this.router.navigate(['/admin/products/', index]);
   }
-  
+
   newCardForm() {
     this.router.navigate(['/admin/products/new']);
   }
@@ -62,7 +62,7 @@ export class ProductsTableComponent implements OnInit {
         this.cards = this.cards.filter(t => t._id !== card._id)
         this.router.navigate(['/admin/products']);
       })
-      
+
     event.stopPropagation();
 
   }

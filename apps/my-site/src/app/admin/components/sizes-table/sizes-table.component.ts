@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Size } from '../../../common/interfaces/size.interface';
 import { SizeService } from '../../size.service';
+import { Size } from '@safari-store/api-interfaces';
 
 @Component({
   selector: 'admin-sizes-table',
@@ -32,7 +32,7 @@ export class SizesTableComponent implements OnInit {
 
   subscribeDataShouldUpdate() {
     this.sizeService.updateChange.subscribe({
-      next: () => { 
+      next: () => {
         this.sizeService.getSizes().subscribe((sizes) => (this.sizes = sizes))
       }
     });

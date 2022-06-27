@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Color } from '../../../common/interfaces/color.interface';
 import { ColorService } from '../../color.service';
+import { Color } from '@safari-store/api-interfaces';
 
 @Component({
   selector: 'admin-colors-table',
@@ -32,7 +32,7 @@ export class ColorsTableComponent implements OnInit {
 
   subscribeDataShouldUpdate() {
     this.colorService.updateChange.subscribe({
-      next: () => { 
+      next: () => {
         this.colorService.getColors().subscribe((colors) => (this.colors = colors))
       }
     });

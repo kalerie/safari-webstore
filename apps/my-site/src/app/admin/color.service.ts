@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Color } from '../common/interfaces/color.interface';
 import { HTTP_HEADERS } from '../common/constants/api-constant';
-import { CreateColorDto } from '@safari-store/api-interfaces';
+import { Color, CreateColorDto } from '@safari-store/api-interfaces';
 
 @Injectable({
   providedIn: 'root'

@@ -6,13 +6,19 @@ import { AppService } from './app.service';
 import { ColorsModule } from './colors/colors.module';
 import { ProductsModule } from './products/products.module';
 import { SizesModule } from './sizes/sizes.module';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
+    MongooseModule.forRoot(
+      `mongodb+srv://dbAdmin:pQ66IrhHFukb2qIz@cluster0.eroqx.mongodb.net/?retryWrites=true&w=majority`
+    ),
     ProductsModule,
     ColorsModule,
     SizesModule,
-    MongooseModule.forRoot(`mongodb+srv://dbAdmin:pQ66IrhHFukb2qIz@cluster0.eroqx.mongodb.net/?retryWrites=true&w=majority`)
+    UsersModule,
+    AuthModule
   ],
   controllers: [
     AppController,

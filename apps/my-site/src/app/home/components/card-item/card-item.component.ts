@@ -1,10 +1,9 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CartItemsService } from '../../../checkout/cart-items.service';
-import { CartItem } from '../../../common/interfaces/cart-item.interface';
-import { Product } from '../../../common/interfaces/product.interface';
 import { DialogService } from '../../../common/services/dialog-service/dialogService.service';
 import { NotificationService } from '../../../common/services/notification.service';
 import { MiniCartComponent } from '../mini-cart/mini-cart.component';
+import { CartItem, Product } from '@safari-store/api-interfaces';
 
 @Component({
   selector: 'card-item',
@@ -24,7 +23,7 @@ export class CardItemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
   }
 
   addToCart() {

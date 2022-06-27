@@ -1,18 +1,19 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
-import { CreateProductDto, UpdateProductDto, Product, ProductDocument } from "@safari-store/api-interfaces";
+import { Model, QueryOptions } from "mongoose";
+import { CreateProductDto, UpdateProductDto } from "@safari-store/api-interfaces";
+import { ProductDocument, ProductModel } from './product.schemas';
 
 @Injectable()
 export class ProductsService {
 
-    constructor(@InjectModel(Product.name) private productModel: Model<ProductDocument>) {    }
+    constructor(@InjectModel(ProductModel.name) private productModel: Model<ProductDocument>) {    }
 
-    async getAll(): Promise<Product[]> {
+    async getAll(): Promise<ProductModel[]> {
         return this.productModel.find().populate(['colors', 'sizes']).exec();
     }
 
-    async getById(id: string): Promise<Product> {
+    async getById(id: string): Promise<ProductModel> {
         const product = await this.productModel.findById(id).populate(['colors', 'sizes']);
         if(!product.colors) {
             product.colors = [];
@@ -20,37 +21,24 @@ export class ProductsService {
         if(!product.sizes) {
             product.sizes = [];
         }
-
         return product;
     }
 
-    async create(productDto: CreateProductDto): Promise<Product> {
+    async create(productDto: CreateProductDto): Promise<ProductModel> {
         const newProduct = new this.productModel(productDto);
-        // await newProduct.populate('colors');
         return newProduct.save();
     }
 
-    async remove(id: string): Promise<Product> {
+    async remove(id: string): Promise<ProductModel> {
         return this.productModel.findByIdAndRemove(id);
     }
 
-    async update(id: string, productDto: UpdateProductDto): Promise<Product> {
+    async update(id: string, productDto: UpdateProductDto): Promise<ProductModel> {
         return this.productModel.findByIdAndUpdate(id, productDto, {new: true});
     }
 
+  async find(options: QueryOptions, sort?: {[key: string]: 'asc' | 'desc'}) {
+    return this.productModel.find(options).populate(['colors', 'sizes']).sort(sort).exec();
+  }
 
-    // const getTutorialWithPopulate = function(id) {
-    //     return db.Tutorial.findById(id).populate("tags");
-    // };
-    // const getTagWithPopulate = function(id) {
-    // return db.Tag.findById(id).populate("tutorials");
-    // };
-    // // whithout _id and _v
-    // const getTutorialWithPopulate = function(id) {
-    //     return db.Tutorial.findById(id).populate("tags", "-_id -__v -tutorials");
-    // };
-    // const getTagWithPopulate = function(id) {
-    // return db.Tag.findById(id).populate("tutorials", "-_id -__v -tags");
-    // };
-    
 }

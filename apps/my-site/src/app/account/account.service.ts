@@ -1,9 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, mergeMap, Observable, of, zip } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CardService } from '../admin/card.service';
-import { User } from '../common/interfaces/user.interface';
-import { Favorit } from '../common/interfaces/favorit.interface';
+import { Product, User } from '@safari-store/api-interfaces';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,7 +17,8 @@ export class AccountService {
   currentUser!: User | null;
 
   private apiUrlFavorites = 'http://localhost:3000/favorites';
-  private apiUrlUsers = 'http://localhost:3000/users';
+  private apiUrlUsers = 'http://localhost:3333/api/users';
+  private apiUrlCurrentUser = 'http://localhost:3333/api/auth/user-info';
 
   constructor(
     private http: HttpClient,
@@ -26,36 +26,26 @@ export class AccountService {
   ) { }
 
   getProfile(): Observable<User> {
-    return this.http.get<User>(`${this.apiUrlUsers}/${localStorage.getItem('user')}`);
+    return this.http.get<User>(`${this.apiUrlCurrentUser}`);
   }
 
   updateProfile(user: User): Observable<User> {
-    const url = `${this.apiUrlUsers}/${localStorage.getItem('user')}`;
+    const url = `${this.apiUrlUsers}/current`;
     return this.http.put<User>(url, user, httpOptions)
   }
 
-  addFavoriteItem(favorit: Favorit): Observable<Favorit> {
-    return this.http.post<Favorit>(this.apiUrlFavorites, favorit, httpOptions);
+  addFavoriteItem(id: string): Observable<void> {
+    const url = `${this.apiUrlUsers}/current/favorites/${id}`;
+    return this.http.put<void>(url, httpOptions);
   }
 
-  getFavoritesByUserId() {
-    return this.http.get<Favorit[]>(`${this.apiUrlFavorites}?userId=1`)
-      .pipe(
-        mergeMap((obj: Favorit[]) => {
-          const ids = obj.map(obj => obj.productId);
-          return zip(this.cardService.getCardsById(ids), of(obj))
-        }),
-        map(([prod, fav]) => {
-          return fav.map(el => {
-            el.product = prod.find(pr => pr._id === el.productId);
-            return el;
-          })})
-      );
+  getUserFavorites() {
+    return this.http.get<Product[]>(`${this.apiUrlUsers}/current/favorites`);
   }
 
-  removeFavorite(id: number) {
-    const url = `${this.apiUrlFavorites}/${id}`;
-    return this.http.delete<Favorit>(url);
+  removeFavorite(id: string): Observable<void> {
+    const url = `${this.apiUrlUsers}/current/favorites/${id}`;
+    return this.http.delete<void>(url);
   }
 
 

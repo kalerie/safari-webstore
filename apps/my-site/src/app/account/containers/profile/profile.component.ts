@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService } from '../../account.service';
+import { NotificationService } from '../../../common/services/notification.service';
 
 @Component({
   selector: 'account-profile',
@@ -14,7 +15,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     public route: ActivatedRoute,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private notifyService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -45,12 +47,12 @@ export class ProfileComponent implements OnInit {
   submit() {
     this.isLoading = true;
     this.accountService.updateProfile(this.userProfileForm.value).subscribe(() => {
+      this.notifyService.showSuccess('Profile successfully updated');
       this.getProfileInfoAndPatchForm();
     });
   }
 
   getProfileInfoAndPatchForm() {
-
     this.accountService.getProfile().subscribe((profile) => {
       this.userProfileForm.patchValue({
         firstName: profile.firstName,
@@ -63,7 +65,7 @@ export class ProfileComponent implements OnInit {
       this.isLoading = false;
     });
   }
-  
+
 
 
 }

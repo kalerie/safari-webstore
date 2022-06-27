@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { Product, ProductSchema } from "@safari-store/api-interfaces";
 import { ProductsController } from "./products.controller";
 import { ProductsService } from "./products.service";
+import { ProductModel, ProductSchema } from './product.schemas';
 
 
 @Module({
@@ -10,7 +10,7 @@ import { ProductsService } from "./products.service";
     controllers: [ProductsController],
     imports: [
         MongooseModule.forFeature([
-            {name: Product.name, schema: ProductSchema}
+            {name: ProductModel.name, schema: ProductSchema}
         ])
     ]
 })

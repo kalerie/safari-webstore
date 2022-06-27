@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CartItem } from '../../../common/interfaces/cart-item.interface';
 import { CartItemsService } from '../../cart-items.service';
+import { CartItem } from '@safari-store/api-interfaces';
 
 @Component({
   selector: 'checkout-cart-item',
@@ -30,6 +30,6 @@ export class CartItemComponent implements OnInit {
     this.remove.emit();
   }
 
-  
+
 
 }

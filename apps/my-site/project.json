@@ -14,7 +14,10 @@
         "tsConfig": "apps/my-site/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/my-site/src/favicon.ico", "apps/my-site/src/assets"],
-        "styles": ["apps/my-site/src/styles.scss"],
+        "styles": [
+          "apps/my-site/src/styles.scss",
+          "node_modules/ngx-toastr/toastr.css"
+        ],
         "scripts": []
       },
       "configurations": {

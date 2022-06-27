@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
-import { CartItem } from '../common/interfaces/cart-item.interface';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+import { CartItem } from '@safari-store/api-interfaces';
 
 @Injectable({
     providedIn: 'root'
@@ -54,7 +54,7 @@ export class CartItemsService {
             this.itemSubTotalUpdate(quantityDecrease!);
             this.countCartTotal();
         }
-        
+
     }
 
     itemQuantityIncrease(itemId: string) {
@@ -79,6 +79,6 @@ export class CartItemsService {
         return sum;
     }
 
-    
-    
+
+
 }

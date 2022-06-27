@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
-import { User } from '../common/interfaces/user.interface';
+import { Observable, of } from 'rxjs';
+import { CreateUserDto, LoginResultDto, LoginUserDto, User } from '@safari-store/api-interfaces';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -13,49 +13,40 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:3000/users';
+  // private apiUrl = 'http://localhost:3000/users';
+  private apiAuthUrl = 'http://localhost:3333/api/auth';
+  // private apiUserUrl = 'http://localhost:3333/api/user';
+
 
   constructor(private http: HttpClient) { }
+
+  register(user: CreateUserDto): Observable<User> {
+    return this.http.post<User>(`${this.apiAuthUrl}/register`, user, httpOptions);
+  }
 
   getCurrentUser(): Observable<User | null> {
     const currentUser = localStorage.getItem('user');
     if(currentUser === null) {
       return of(null);
     } else {
-      return this.http.get<User>(`${this.apiUrl}/${currentUser}`);
+      return this.http.get<User>(`${this.apiAuthUrl}/user-info`);
     }
   }
 
-  addUser(user: User): Observable<User> {
-    return this.http.post<User>(this.apiUrl, user, httpOptions);
-  }
-
-  login(userCredentials: any) {
-    return this.checkIfUserExist(userCredentials.email, userCredentials.password);
+  login(user: LoginUserDto): Observable<LoginResultDto> {
+    return this.http.post<LoginResultDto>(`${this.apiAuthUrl}/login`, user, httpOptions);
   }
 
   signout() {
     return localStorage.removeItem('user');
   }
 
-  checkIfUserExist(email: string, password: string) {
-    return this.http.get<User[]>(`${this.apiUrl}?email=${email}&password=${password}`)
-      .pipe(map((users: User[]) => {
-        if(users.length > 0){
-          this.setUserIdToLocalStorage(users[0]);
-          return true;
-        } else {
-          return false;
-        }
-      }));
-  }
-
   checkAuth(): boolean {
     return !!localStorage.getItem('user')
   }
 
-  setUserIdToLocalStorage(user: User) {
-    localStorage.setItem('user', JSON.stringify(user.id));
+  setUserIdToLocalStorage(token: any) {
+    localStorage.setItem('user', token);
   }
 
 

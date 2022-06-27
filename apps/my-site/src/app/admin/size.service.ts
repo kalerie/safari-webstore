@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Size } from '../common/interfaces/size.interface';
 import { HTTP_HEADERS } from '../common/constants/api-constant';
-import { CreateSizeDto } from '@safari-store/api-interfaces';
+import { CreateSizeDto, Size } from '@safari-store/api-interfaces';
 
 @Injectable({
   providedIn: 'root'

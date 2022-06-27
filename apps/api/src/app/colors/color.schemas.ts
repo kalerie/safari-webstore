@@ -1,12 +1,12 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Transform } from "class-transformer";
-import { Document } from "mongoose";
 import * as mongoose from 'mongoose';
+import { Document } from 'mongoose';
 
-export type SizeDocument = Size & Document;
+export type ColorDocument = ColorModel & Document;
 
-@Schema()
-export class Size {
+@Schema({collection: 'colors'})
+export class ColorModel {
     @Transform(({ value }) => value.toString())
     _id: mongoose.ObjectId;
 
@@ -15,7 +15,7 @@ export class Size {
 
     @Prop()
     value: string;
-    
+
 }
 
-export const SizeSchema = SchemaFactory.createForClass(Size);
+export const ColorSchema = SchemaFactory.createForClass(ColorModel);
