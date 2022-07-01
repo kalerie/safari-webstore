@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "module": "commonjs",
+    "types": ["node"],
+    "emitDecoratorMetadata": true,
+    "target": "es2015"
+  },
+  "exclude": ["jest.config.ts", "**/*.spec.ts", "**/*.test.ts"],
+  "include": ["**/*.ts", "../../libs/api-interfaces/src/models/color.schemas.ts", "../../libs/api-interfaces/src/models/product.schemas.ts", "../../libs/api-interfaces/src/dtos/product.dto.ts"]
+}

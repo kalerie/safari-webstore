@@ -1,0 +1,69 @@
+<h1>Create account</h1>
+<div class="form-container">
+    <!-- [formGroup]="newCardForm"  -->
+     <form [formGroup]="registrationForm" (ngSubmit)="submit()" autocomplete="off">
+        <div class="form-group">
+            <label for="firstName">
+                First name
+                <em *ngIf="registrationForm.controls['firstName'].errors?.['required'] && registrationForm.controls['firstName'].touched">Required</em>
+                <em *ngIf="registrationForm.controls['firstName'].errors?.['minlength'] && registrationForm.controls['firstName'].touched">Must be 3 or more letters</em>
+            </label>
+            <input formControlName="firstName" id="firstName" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">
+                Last name
+                <em *ngIf="registrationForm.controls['lastName'].errors?.['required'] && registrationForm.controls['lastName'].touched">Required</em>
+                <em *ngIf="registrationForm.controls['lastName'].errors?.['minlength'] && registrationForm.controls['lastName'].touched">Must be 3 or more letters</em>
+            </label>
+            <input formControlName="lastName" id="lastName" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="email">
+                Email
+                <em *ngIf="registrationForm.controls['email'].errors?.['required'] && registrationForm.controls['email'].touched">Required</em>
+                <em *ngIf="registrationForm.controls['email'].errors?.['email']">Please enter valid email</em>
+            </label>
+            <input formControlName="email" id="email" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="createPassword">
+                Create password
+                <em *ngIf="registrationForm.controls['createPassword'].errors?.['required'] && registrationForm.controls['createPassword'].touched">Required</em>
+            </label>
+            <input formControlName="createPassword" id="createPassword" type="password" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">
+                Confirm password
+                <em *ngIf="registrationForm.controls['confirmPassword'].errors?.['required'] && registrationForm.controls['confirmPassword'].touched">Required</em>
+                <em *ngIf="(registrationForm.controls['confirmPassword'].value !== registrationForm.controls['createPassword'].value) && !registrationForm.controls['confirmPassword'].errors?.['required']">Passwords should be equal</em>
+            </label>
+            <input formControlName="confirmPassword" id="confirmPassword" type="password" class="form-control" required>
+        </div>
+
+        <div class="form-check">
+            <label for="newsletters" class="main">
+                I want to receive Safari newsletters with the best deals and offers
+                <input type="checkbox" formControlName="newsletters" id="newsletters" class="checked" />
+                <span class="pinkmark">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.8388 6.69459L8.81799 18.7154L3.16113 13.0586L4.57113 11.6486L8.81799 15.8854L19.4288 5.28459L20.8388 6.69459Z" fill="#2E3A59"></path>
+                    </svg>
+                </span>
+            </label>
+        </div>
+
+
+        <button type="submit" [disabled]="registrationForm.invalid || (registrationForm.controls['confirmPassword'].value !== registrationForm.controls['createPassword'].value)" class="btn btn-primary">
+           Create account
+        </button>
+
+
+        <!-- <button (click)="cancel()" type="button" class="btn btn-default">Cancel</button> -->
+    </form>
+    <a routerLink="/auth">Have account?&nbsp;&nbsp;Sing in!</a>
+</div>
+
+

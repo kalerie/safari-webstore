@@ -1,0 +1,44 @@
+/* Add application styles & imports to this file! */
+@import '@angular/cdk/overlay-prebuilt.css';
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+    font-family: 'Mulish', sans-serif;
+    scroll-behavior: smooth;
+}
+
+header {
+    background-color: #F5F5F5;
+}
+
+footer {
+    background-color: #F5F5F5;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+// Overlay backdrop styling
+.overlay-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+  
+// Overlay panel styling
+.overlay-panel {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 45%;
+}
