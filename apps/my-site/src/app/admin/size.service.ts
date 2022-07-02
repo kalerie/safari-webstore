@@ -2,17 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { HTTP_HEADERS } from '../common/constants/api-constant';
-import { CreateSizeDto, Size } from '@safari-store/api-interfaces';
+import { CreateSizeDto, Size, UpdateSizeDto } from '@safari-store/api-interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SizeService {
   routeChange = new Subject<string>();
-  updateChange = new Subject<void>();
+  // updateChange = new Subject<void>();
   httpOptions = HTTP_HEADERS;
 
-  // private apiUrl = 'http://localhost:3000/sizes';
   private apiUrl = 'http://localhost:3333/api/sizes';
 
   constructor(private http: HttpClient) { }
@@ -34,7 +33,7 @@ export class SizeService {
     return this.http.post<Size>(this.apiUrl, size, this.httpOptions);
   }
 
-  updateSize(id:number, size: Size): Observable<Size> {
+  updateSize(size: UpdateSizeDto, id: string): Observable<Size> {
       const url = `${this.apiUrl}/${id}`;
       return this.http.put<Size>(url, size, this.httpOptions);
   }

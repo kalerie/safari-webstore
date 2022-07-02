@@ -2,17 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { HTTP_HEADERS } from '../common/constants/api-constant';
-import { Color, CreateColorDto } from '@safari-store/api-interfaces';
+import { Color, CreateColorDto, UpdateColorDto } from '@safari-store/api-interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ColorService {
   routeChange = new Subject<string>();
-  updateChange = new Subject<void>();
+  // updateChange = new Subject<void>();
   httpOptions = HTTP_HEADERS;
 
-  // private apiUrl = 'http://localhost:3000/colors';
   private apiUrl = 'http://localhost:3333/api/colors';
 
   constructor(private http: HttpClient) { }
@@ -34,7 +33,7 @@ export class ColorService {
     return this.http.post<Color>(this.apiUrl, color, this.httpOptions);
   }
 
-  updateColor(id: string, color: Color): Observable<Color> {
+  updateColor(color: UpdateColorDto, id: string): Observable<Color> {
       const url = `${this.apiUrl}/${id}`;
       return this.http.put<Color>(url, color, this.httpOptions);
   }

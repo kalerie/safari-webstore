@@ -30,8 +30,8 @@ export class SizesController {
         return this.sizesService.remove(id);
     }
 
-    @Put()
-    update(@Body() updateSizeDto: UpdateSizeDto, @Param('id') id: string): Promise<SizeModel> {
+    @Put(':id')
+    update(@Param('id') id: string, @Body() updateSizeDto: UpdateSizeDto, ): Promise<SizeModel> {
         return this.sizesService.update(id, updateSizeDto);
     }
 

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './common/components/footer/footer.component';
 import { HeaderComponent } from './common/components/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,12 @@ import { ToastrModule } from 'ngx-toastr';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TokenInterceptor } from './common/interceptors/token.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './app.effects';
+import { metaReducers, reducers } from './store/reducers';
 
 @NgModule({
   declarations: [
@@ -28,6 +34,11 @@ import { TokenInterceptor } from './common/interceptors/token.interceptor';
     SharedModule,
     ToastrModule.forRoot(),
     OverlayModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    }),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    EffectsModule.forRoot([AppEffects]),
   ],
   providers: [
     {

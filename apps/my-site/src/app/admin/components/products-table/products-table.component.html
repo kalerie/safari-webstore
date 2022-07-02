@@ -6,11 +6,11 @@
               <th>
                 <button class="th-btn" (click)="newCardForm()">New</button>
               </th>
-              
+
             </tr>
           </thead>
         <tbody>
-            <tr class="tr-body" *ngFor="let card of cards; let row; let i = index" (click)="selectRow(card._id!)" [class.active]="card._id == highlightRow">
+            <tr class="tr-body" *ngFor="let card of cards$ | async ; let row; let i = index" (click)="selectRow(card._id!)" [class.active]="card._id == highlightRow">
                 <td class="td-id">{{ i+1 }}</td>
                 <td>{{card.title}}</td>
                 <td>{{card.price}}</td>
@@ -24,4 +24,7 @@
               </tr>
         </tbody>
     </table>
+
+
+<!--  <div class="" *ngFor="let product of allProducts$ | async">{{product.title}} - {{product.price}}</div>-->
 </div>

@@ -8,7 +8,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="row" *ngFor="let item of colors; let row; let i = index" (click)="selectRow(item._id!)" [class.active]="item._id == highlightRow">
+        <tr class="row" *ngFor="let item of colors$ | async; let row; let i = index" (click)="selectRow(item._id!)" [class.active]="item._id == highlightRow">
             <td class="row__id">{{ i + 1 }}</td>
             <td>{{item.title}}</td>
             <td class="row__value">

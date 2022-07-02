@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ColorService } from '../../color.service';
-import { Color } from '@safari-store/api-interfaces';
+import { Store } from '@ngrx/store';
+import { loadColors, removeColor } from '../../../store/actions/colors.actions';
+import { getColors } from '../../../store/selectors/products-table.selector';
 
 @Component({
   selector: 'admin-colors-table',
@@ -9,32 +11,25 @@ import { Color } from '@safari-store/api-interfaces';
   styleUrls: ['./colors-table.component.scss']
 })
 export class ColorsTableComponent implements OnInit {
-  colors: Color[] = [];
+  colors$ = this.store.select(getColors);
   titles = ['#','Title', 'Value'];
   highlightRow!: string;
 
+
   constructor(
     private router: Router,
-    private colorService: ColorService
+    private colorService: ColorService,
+    private store: Store
   ) { }
 
   ngOnInit(): void {
+    this.store.dispatch(loadColors());
     this.subscribeRouteChange();
-    this.subscribeDataShouldUpdate();
-    this.colorService.getColors().subscribe((colors) => (this.colors = colors));
   }
 
   subscribeRouteChange() {
     this.colorService.routeChange.subscribe((id) => {
       this.highlightRow = id;
-    });
-  }
-
-  subscribeDataShouldUpdate() {
-    this.colorService.updateChange.subscribe({
-      next: () => {
-        this.colorService.getColors().subscribe((colors) => (this.colors = colors))
-      }
     });
   }
 
@@ -48,14 +43,7 @@ export class ColorsTableComponent implements OnInit {
   }
 
   deleteColor(id: string, event: Event) {
-    this.colorService
-      .deleteColor(id)
-      .subscribe(() => {
-        this.colors = this.colors.filter(t => t._id !== id)
-        if(this.router.url == `/admin/colors/${id}`){
-          this.router.navigate(['/admin/colors']);
-        }
-      })
+    this.store.dispatch(removeColor({ _id: id }));
     event.stopPropagation();
   }
 

@@ -4,7 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormType } from '../../../common/form-type.enum';
 import { NotificationService } from '../../../common/services/notification.service';
 import { SizeService } from '../../size.service';
-import { Size } from '@safari-store/api-interfaces';
+import { CreateSizeDto, UpdateSizeDto } from '@safari-store/api-interfaces';
+import { Store } from '@ngrx/store';
+import { addSize, updateSize } from '../../../store/actions/sizes.actions';
 
 @Component({
   selector: 'admin-size-form',
@@ -13,7 +15,7 @@ import { Size } from '@safari-store/api-interfaces';
 })
 export class SizeFormComponent implements OnInit {
   newSizeForm!: FormGroup;
-  sizeId?: number;
+  sizeId?: string;
   public formTypeEnum = FormType;
   public routeType = this.route.snapshot.data['type'];
 
@@ -22,7 +24,8 @@ export class SizeFormComponent implements OnInit {
     public route: ActivatedRoute,
     private fb: FormBuilder,
     private sizeService: SizeService,
-    private notifyService: NotificationService
+    private notifyService: NotificationService,
+    private store: Store
   ) { }
 
   ngOnInit(): void {
@@ -56,21 +59,13 @@ export class SizeFormComponent implements OnInit {
     })
   }
 
-  updateSize(size: Size) {
-    this.sizeService.updateSize(this.sizeId as number, size).subscribe(() => {
-      this.sizeService.updateChange.next();
-      this.notifyService.showSuccess('Item was updated');
-    });
-
+  updateSize(size: UpdateSizeDto) {
+    this.store.dispatch(updateSize({ size: size, _id: this.sizeId as string }));
   }
 
-  addSize(size: Size) {
-    this.sizeService.addSize(size).subscribe(() => {
-      this.sizeService.updateChange.next();
-      this.newSizeForm.reset();
-      this.notifyService.showSuccess('Item was added');
-    });
-
+  addSize(size: CreateSizeDto) {
+    this.store.dispatch(addSize({ size: size }));
+    this.newSizeForm.reset();
   }
 
   submit() {
