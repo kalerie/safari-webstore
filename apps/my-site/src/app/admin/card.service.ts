@@ -12,7 +12,6 @@ import { CreateProductDto, Product, UpdateProductDto } from '@safari-store/api-i
 
 export class CardService {
     routeChange = new Subject<string>();
-    updateChange = new Subject<void>();
     httpOptions = HTTP_HEADERS;
 
     private apiUrl = 'http://localhost:3333/api/products';
@@ -40,9 +39,9 @@ export class CardService {
         return this.http.put<Product>(url, card, this.httpOptions);
     }
 
-    deleteCard(card:Product): Observable<Product> {
-        const url = `${this.apiUrl}/${card._id}`;
-        return this.http.delete<Product>(url);
+    deleteCard(id: string): Observable<Product> {
+      const url = `${this.apiUrl}/${id}`;
+      return this.http.delete<Product>(url);
     }
 
     getCardsById(ids: string[]): Observable<Product[]> {

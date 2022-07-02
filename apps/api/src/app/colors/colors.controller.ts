@@ -30,7 +30,7 @@ export class ColorsController {
         return this.colorsService.remove(id);
     }
 
-    @Put()
+    @Put(':id')
     update(@Body() updateColorDto: UpdateColorDto, @Param('id') id: string): Promise<ColorModel> {
         return this.colorsService.update(id, updateColorDto);
     }

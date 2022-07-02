@@ -5,6 +5,10 @@ import { ProductCategory, ProductCategoryLabel } from '../../../common/product-c
 import { ProductType, ProductTypeLabel } from '../../../common/product-type.enum';
 import { CardService } from '../../card.service';
 import { Product } from '@safari-store/api-interfaces';
+import { Store } from '@ngrx/store';
+import { getProducts } from '../../../store/selectors/products-table.selector';
+import { loadProducts, removeProduct } from '../../../store/actions/products-table.actions';
+
 
 @Component({
   selector: 'admin-products-table',
@@ -12,24 +16,28 @@ import { Product } from '@safari-store/api-interfaces';
   styleUrls: ['./products-table.component.scss']
 })
 export class ProductsTableComponent implements OnInit {
-  cards: Product[] = [];
+  // cards: Product[] = [];
   titles = ['#','Title', 'Price', 'Type', 'Category','ImageUrl'];
   highlightRow!: string;
   public dictionary: any = '';
   categories: LabelValueEntry[] = buildLabelValueMap(ProductCategoryLabel, ProductCategory);
   types: LabelValueEntry[] = buildLabelValueMap(ProductTypeLabel, ProductType);
 
+  cards$ = this.store.select(getProducts);
+
   constructor(
     private cardService: CardService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(loadProducts());
+
     this.subscribeRouteChange();
-    this.subscribeDataShouldUpdate();
-    this.cardService.getCards().subscribe((cards) => (this.cards = cards));
+    // this.subscribeDataShouldUpdate();
   }
 
   subscribeRouteChange() {
@@ -38,13 +46,13 @@ export class ProductsTableComponent implements OnInit {
     });
   }
 
-  subscribeDataShouldUpdate() {
-    this.cardService.updateChange.subscribe({
-      next: () => {
-        this.cardService.getCards().subscribe((cards) => (this.cards = cards))
-      }
-    });
-  }
+  // subscribeDataShouldUpdate() {
+  //   this.cardService.updateChange.subscribe({
+  //     next: () => {
+  //       // this.cardService.getCards().subscribe((cards) => (this.cards = cards))
+  //     }
+  //   });
+  // }
 
   selectRow(index: string) {
     this.highlightRow = index;
@@ -56,14 +64,8 @@ export class ProductsTableComponent implements OnInit {
   }
 
   deleteCard(card: Product, event: Event) {
-    this.cardService
-      .deleteCard(card)
-      .subscribe(() => {
-        this.cards = this.cards.filter(t => t._id !== card._id)
-        this.router.navigate(['/admin/products']);
-      })
-
+    this.store.dispatch(removeProduct({ _id: card._id }));
     event.stopPropagation();
-
   }
+
 }

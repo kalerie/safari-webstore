@@ -22,7 +22,7 @@
                     <option *ngFor="let type of types" [value]="type.value">
                      {{ type.label }}
                     </option>
-                  </select> 
+                  </select>
             </div>
             <div class="form-group">
                 <label for="category">Select category:</label>
@@ -30,7 +30,7 @@
                     <option *ngFor="let category of categories" [value]="category.value">
                      {{ category.label }}
                     </option>
-                  </select> 
+                  </select>
             </div>
 
             <div class="form-group">
@@ -47,7 +47,7 @@
                         </svg>
                     </ng-template>
                 </admin-multi-select>
-                
+
 
                 <admin-multi-select (onItemChange)="sizeChange($event)" [selectedItems]="selectedSizes" [items]="sizes" [dropdownElTemplate]="dropdownSizeTemplate" [selectedItemTemplate]="selectedSizeTemplate" [title]="'Select Sizes'" [placeholder]="'Search size...'">
                     <ng-template #dropdownSizeTemplate let-item="item">
@@ -61,7 +61,7 @@
                     </ng-template>
                 </admin-multi-select>
             </div>
-        
+
 
 
             <div class="form-group">

@@ -4,7 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormType } from '../../../common/form-type.enum';
 import { NotificationService } from '../../../common/services/notification.service';
 import { ColorService } from '../../color.service';
-import { Color } from '@safari-store/api-interfaces';
+import { CreateColorDto, UpdateColorDto } from '@safari-store/api-interfaces';
+import { Store } from '@ngrx/store';
+import { addColor, updateColor } from '../../../store/actions/colors.actions';
 
 @Component({
   selector: 'admin-color-form',
@@ -13,7 +15,7 @@ import { Color } from '@safari-store/api-interfaces';
 })
 export class ColorFormComponent implements OnInit {
   newColorForm!: FormGroup;
-  itemId?: string;
+  colorId?: string;
   public formTypeEnum = FormType;
   public routeType = this.route.snapshot.data['type'];
 
@@ -22,7 +24,8 @@ export class ColorFormComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private colorService: ColorService,
-    private notifyService: NotificationService
+    private notifyService: NotificationService,
+    private store: Store
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +44,7 @@ export class ColorFormComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.colorService.routeChange.next(params['id']);
       if (params['id']) {
-        this.itemId = params['id'];
+        this.colorId = params['id'];
         this.getCardAndPatchForm(params['id']);
       }
     })
@@ -56,21 +59,13 @@ export class ColorFormComponent implements OnInit {
     })
   }
 
-  updateColor(color: Color) {
-    this.colorService.updateColor(this.itemId as string, color).subscribe(() => {
-      this.colorService.updateChange.next();
-      this.notifyService.showSuccess('Item was updated');
-    });
-
+  updateColor(color: UpdateColorDto) {
+    this.store.dispatch(updateColor({ color: color, _id: this.colorId as string }));
   }
 
-  addColor(color: Color) {
-    this.colorService.addColor(color).subscribe(() => {
-      this.colorService.updateChange.next();
-      this.newColorForm.reset();
-      this.notifyService.showSuccess('Item was added');
-    });
-
+  addColor(color: CreateColorDto) {
+    this.store.dispatch(addColor({ color: color }));
+    this.newColorForm.reset();
   }
 
   submit() {

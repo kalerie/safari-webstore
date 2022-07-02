@@ -30,4 +30,5 @@ export class SizesService {
         return this.sizeModel.findByIdAndUpdate(id, sizeDto, {new: true});
     }
 
+
 }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SizeService } from '../../size.service';
-import { Size } from '@safari-store/api-interfaces';
+import { Store } from '@ngrx/store';
+import { loadSizes, removeSize } from '../../../store/actions/sizes.actions';
+import { getSizes } from '../../../store/selectors/products-table.selector';
 
 @Component({
   selector: 'admin-sizes-table',
@@ -9,32 +11,25 @@ import { Size } from '@safari-store/api-interfaces';
   styleUrls: ['./sizes-table.component.scss']
 })
 export class SizesTableComponent implements OnInit {
-  sizes: Size[] = [];
+  sizes$ = this.store.select(getSizes);
   titles = ['#','Title', 'Value'];
   highlightRow!: string;
 
+
   constructor(
     private router: Router,
-    private sizeService: SizeService
+    private sizeService: SizeService,
+    private store: Store
   ) { }
 
   ngOnInit(): void {
+    this.store.dispatch(loadSizes());
     this.subscribeRouteChange();
-    this.subscribeDataShouldUpdate();
-    this.sizeService.getSizes().subscribe((sizes) => (this.sizes = sizes));
   }
 
   subscribeRouteChange() {
     this.sizeService.routeChange.subscribe((id) => {
       this.highlightRow = id;
-    });
-  }
-
-  subscribeDataShouldUpdate() {
-    this.sizeService.updateChange.subscribe({
-      next: () => {
-        this.sizeService.getSizes().subscribe((sizes) => (this.sizes = sizes))
-      }
     });
   }
 
@@ -48,14 +43,7 @@ export class SizesTableComponent implements OnInit {
   }
 
   deleteSize (id: string, event: Event) {
-    this.sizeService
-      .deleteSize(id)
-      .subscribe(() => {
-        this.sizes = this.sizes.filter(t => t._id !== id)
-        if(this.router.url == `/admin/sizes/${id}`){
-          this.router.navigate(['/admin/sizes']);
-        }
-      })
+    this.store.dispatch(removeSize({ _id: id }));
     event.stopPropagation();
   }
 

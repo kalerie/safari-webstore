@@ -18,6 +18,8 @@ import {
   ShoesCategory,
   ShoesCategoryLabel
 } from '../../../common/product-category.enum';
+import { Store } from '@ngrx/store';
+import { addProduct, updateProduct } from '../../../store/actions/products-table.actions';
 
 @Component({
   selector: 'admin-product-form',
@@ -47,6 +49,7 @@ export class ProductFormComponent implements OnInit {
     private colorService: ColorService,
     private sizeService: SizeService,
     private cdr: ChangeDetectorRef,
+    private store: Store
   ) {
 
   }
@@ -65,7 +68,6 @@ export class ProductFormComponent implements OnInit {
       this.categories = buildLabelValueMap(AccessoriesCategoryLabel, AccessoriesCategory);
     }
     this.categories = this.categories.filter(c => c.label !== 'All');
-
 
   }
 
@@ -108,11 +110,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   updateCard(card: UpdateProductDto) {
-    this.cardService.updateCard(card, this.cardId as string)
-      .subscribe(() => {
-      this.cardService.updateChange.next();
-      this.notifyService.showSuccess('Card was updated');
-    });
+    this.store.dispatch(updateProduct({ product: card, _id: this.cardId as string }));
   }
 
   getCardAndPatchForm(id: string) {
@@ -166,15 +164,16 @@ export class ProductFormComponent implements OnInit {
   }
 
   addCard(card: CreateProductDto) {
-    this.cardService.addCard(card).subscribe(() => {
-      this.cardService.updateChange.next();
-      this.newCardForm.reset();
-      this.selectedColors = [];
-      this.selectedSizes = [];
-      this.colorService.getColors().subscribe((colors) => (this.colors = colors));
-      this.sizeService.getSizes().subscribe((sizes) => (this.sizes = sizes));
-      this.notifyService.showSuccess('Card was added');
-    });
+    this.store.dispatch(addProduct({ product: card }));
+    this.newCardForm.reset();
+
+
+    // change later
+    this.selectedColors = [];
+    this.selectedSizes = [];
+    this.colorService.getColors().subscribe((colors) => (this.colors = colors));
+    this.sizeService.getSizes().subscribe((sizes) => (this.sizes = sizes));
+
   }
 
   submit(): void {
